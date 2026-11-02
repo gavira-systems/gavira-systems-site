@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GaVira Systems | AI Automation for Finance and Operations</title>
+<meta name="description" content="AI automation built by a fintech engineer. Watch live credit, GST, accounts payable and IPO desks do their work. Every system logs what it did and waits for sign-off.">
+<link rel="canonical" href="https://systems.gavira.co.in/">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta name="theme-color" content="#0c2427">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GaVira">
+<meta property="og:title" content="GaVira Systems: AI systems that show their work">
+<meta property="og:description" content="Live finance desks you can click through, built by a fintech engineer. The AI reads, your rules decide, a person signs.">
+<meta property="og:url" content="https://systems.gavira.co.in/">
+<meta property="og:image" content="https://systems.gavira.co.in/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "GaVira Systems",
+  "serviceType": "AI automation",
+  "provider": { "@type": "Organization", "name": "GaVira", "url": "https://www.gavira.co.in/", "founder": { "@type": "Person", "name": "Vidhya Ramaprasad", "jobTitle": "Co-founder, GaVira" } },
+  "url": "https://systems.gavira.co.in/",
+  "logo": "https://systems.gavira.co.in/img/apple-touch-icon.png",
+  "image": "https://systems.gavira.co.in/img/og.jpg",
+  "description": "AI automation for finance, operations and growth teams. Every system logs what it did and waits for a person to approve anything that goes out.",
+  "areaServed": "Worldwide",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "AI automation systems",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Document processing", "description": "Invoices, statements, KYC files and CVs read into clean data." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reconciliation", "description": "Books matched against banks, tax portals and suppliers." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reporting and dashboards", "description": "Recurring reports built once and refreshed automatically." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Compliance checks", "description": "KYC, approval routing and audit logs kept as the work happens." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Client onboarding", "description": "Contract, invoice, intake and kickoff in order." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lead generation and outbound", "description": "Leads found, enriched and scored, with drafts queued for approval." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI agents", "description": "Assistants on WhatsApp and the web that answer from your own documents." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CRM and pipeline automation", "description": "Deals, limits and follow-ups routed to the right person." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Content engine", "description": "Topic research, hooks, drafts and brand checks for LinkedIn and Instagram." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Retention and reviews", "description": "Review requests, timely follow-ups and early churn signals." } }
+    ]
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f3f5ee; --paper: #fbfcf8; --teal: #006d77; --sage: #899670; --soft: #a3b18a;
+    --onyx: #111111; --night: #0c2427; --ink2: #4a5143; --line: #d9ddd0; --gold: #ffd166; --gold-deep: #d9a520; --rust: #a4462f; --rust-lite: #e08a6d;
+    --art: #50544a; --art-dark: #8fa3a0;
+    --gutter: clamp(16px, 4vw, 56px);
+    --ease: cubic-bezier(.215, .61, .355, 1);
+    --lift: 0 9px 12px -8px rgba(17,17,17,.3), 0 2px 4px rgba(17,17,17,.07);
+    --lift-sm: 0 6px 10px -6px rgba(17,17,17,.28), 0 1px 3px rgba(17,17,17,.08);
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scrollbar-color: var(--sage) var(--cream); }
+  body { position: relative; background: var(--cream) repeating-linear-gradient(180deg, transparent 0 33px, rgba(0,109,119,.07) 33px 34px); color: var(--onyx); font: 400 17px/1.55 Lato, system-ui, sans-serif; overflow-x: clip; -webkit-font-smoothing: antialiased; caret-color: var(--gold-deep); }
+  ::selection { background: var(--gold); color: var(--onyx); }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-underline-offset: .2em; }
+  button { font: inherit; color: inherit; }
+  svg.i { width: 1.05em; height: 1.05em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  section, header, footer { position: relative; }
+  .wrap { position: relative; z-index: 2; padding: 0 var(--gutter); max-width: 1440px; margin: 0 auto; }
+  .dark { background-color: var(--night); background-image: repeating-linear-gradient(180deg, transparent 0 33px, rgba(163,177,138,.06) 33px 34px); color: var(--cream); }
+  :focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 5px; border-radius: 3px; }
+  .dark :focus-visible { outline-color: var(--gold); }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+  /* type */
+  .mega { font-weight: 900; text-transform: uppercase; letter-spacing: -.045em; line-height: .86; }
+  .mega em { font: italic 700 1em/1 'Playfair Display', serif; text-transform: none; letter-spacing: -.02em; }
+  .ln { display: block; width: max-content; max-width: 100%; }
+  .h2 { font-size: clamp(46px, 7.4vw, 124px); }
+  .meta { font: 900 12px/1.4 Lato, sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+  .lede { max-width: 52ch; color: var(--ink2); font-size: clamp(16px, 1.25vw, 19px); }
+  .dark .lede { color: #c9d4d1; }
+  .gold { color: var(--gold); }
+  .link { display: inline-flex; align-items: center; gap: 10px; background: none; border: 0; border-bottom: 1.5px solid currentColor; padding: 0 0 5px; cursor: pointer; text-decoration: none; font: 900 13px/1 Lato, sans-serif; letter-spacing: .14em; text-transform: uppercase; transition: color .2s; }
+  .link:hover { color: var(--teal); }
+  .dark .link:hover { color: var(--gold); }
+  .link .i { transition: transform .25s var(--ease); }
+  .link:hover .i { transform: translate(2px, -2px); }
+
+  /* headings come into focus as they arrive */
+  .js .blur-in .ln { opacity: 0; filter: blur(10px); transform: translateY(18%); }
+  .blur-in .ln { transition: opacity .9s var(--ease), filter .9s var(--ease), transform .9s var(--ease); }
+  .blur-in.in .ln { opacity: 1; filter: blur(0); transform: none; }
+  .blur-in.in .ln:nth-child(2) { transition-delay: .08s; } .blur-in.in .ln:nth-child(3) { transition-delay: .16s; } .blur-in.in .ln:nth-child(4) { transition-delay: .24s; }
+
+  /* the thread */
+  #thread { position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none; overflow: visible; }
+  #thread path, #thread-front path { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  #thread-front { position: absolute; top: 0; left: 0; z-index: 3; pointer-events: none; overflow: visible; }
+  #t-head { fill: var(--gold-deep); opacity: 0; transition: opacity .2s; }
+  #t-head.on { opacity: 1; }
+  #t-head.on-dark { fill: var(--gold); }
+  .node { display: block; width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--gold-deep); background: var(--cream); position: relative; z-index: 3; transition: background .3s, transform .3s; }
+  .dark .node { border-color: var(--gold); background: var(--night); }
+  .node.lit { background: var(--gold-deep); transform: scale(1.2); }
+  .dark .node.lit { background: var(--gold); }
+  .node.lead { margin: 0 0 18px calc(var(--gutter) / -2 - 5.5px); }
+  .narrow-only { display: none; }
+  .pin { position: absolute; width: 1px; height: 1px; pointer-events: none; }
+
+  /* whatever the thread reaches comes into focus */
+  .rv { transition: opacity .6s var(--ease), filter .6s var(--ease), transform .6s var(--ease), background-color .5s, color .5s; }
+  .js .rv:not(.lit) { opacity: .1; filter: blur(6px); }
+  .js .stamp.rv:not(.lit) { opacity: 0; filter: none; transform: rotate(-4deg) scale(1.7); }
+  .stamp.rv.lit { transform: rotate(-4deg) scale(1); transition: opacity .15s, transform .45s cubic-bezier(.3,1.7,.5,1); }
+
+  /* header */
+  .top { position: fixed; inset: 0 0 auto 0; z-index: 30; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px var(--gutter); color: var(--onyx); transition: color .3s, background-color .3s; }
+  .top.scrolled { background: rgba(243,245,238,.86); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+  .top.on-dark { color: var(--cream); }
+  .top.on-dark.scrolled { background: rgba(12,36,39,.84); }
+  .brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
+  .brand img { height: 24px; width: auto; transition: filter .3s; }
+  .brand span { font: 900 11px/1 Lato, sans-serif; letter-spacing: .3em; color: var(--teal); transition: color .3s; }
+  .top.on-dark .brand img { filter: brightness(0) invert(1); }
+  .top.on-dark .brand span { color: var(--gold); }
+  .top nav { display: flex; align-items: center; gap: clamp(14px, 2.2vw, 32px); }
+  .navlink { position: relative; text-decoration: none; font: 700 12px/1 Lato, sans-serif; letter-spacing: .14em; text-transform: uppercase; padding: 6px 0; }
+  .navlink::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .35s var(--ease); }
+  .navlink:hover::after, .navlink[aria-current="true"]::after { transform: scaleX(1); transform-origin: left; }
+  .talk { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--onyx); border: 0; border-radius: 999px; padding: 11px 17px; cursor: pointer; font: 900 11px/1 Lato, sans-serif; letter-spacing: .14em; text-transform: uppercase; transition: transform .2s; }
+  .talk:hover { transform: translateY(-2px); }
+
+  /* how far along the thread you are */
+  .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; pointer-events: none; }
+  .progress i { display: block; height: 100%; background: var(--gold); transform-origin: left; transform: scaleX(0); }
+  /* nav labels roll to a second copy on hover */
+  .roll { display: inline-block; overflow: hidden; vertical-align: top; height: 1.2em; line-height: 1.2em; }
+  .roll > span { display: block; transition: transform .45s var(--ease); }
+  .roll > span::after { content: attr(data-text); display: block; }
+  a:hover > .roll > span, .navlink:focus-visible > .roll > span { transform: translateY(-50%); }
+  /* the phone menu springs open */
+  .menu-btn { display: none; align-items: center; gap: 10px; background: none; border: 0; cursor: pointer; font: 900 11px/1 Lato, sans-serif; letter-spacing: .16em; text-transform: uppercase; padding: 10px 4px; }
+  .menu-btn i { position: relative; width: 18px; height: 8px; transition: transform .35s var(--ease); }
+  .menu-btn i::before, .menu-btn i::after { content: ''; position: absolute; left: 0; right: 0; height: 1.5px; background: currentColor; transition: transform .35s var(--ease); }
+  .menu-btn i::before { top: 0; } .menu-btn i::after { bottom: 0; }
+  .menu-btn[aria-expanded="true"] i { transform: rotate(180deg); }
+  .menu-btn[aria-expanded="true"] i::before { transform: translateY(3.25px); } .menu-btn[aria-expanded="true"] i::after { transform: translateY(-3.25px); }
+  .sheet { position: fixed; left: 10px; right: 10px; top: 64px; z-index: 29; display: grid; gap: 4px; padding: 18px; border-radius: 18px; background: var(--night); color: var(--cream); box-shadow: 0 16px 24px -14px rgba(0,0,0,.6); transform-origin: top right; transform: scale(.6) translateY(-20px); opacity: 0; visibility: hidden; transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .25s, visibility 0s .5s; }
+  .sheet.open { transform: none; opacity: 1; visibility: visible; transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .25s; }
+  .sheet a { font: 900 28px/1.15 Lato, sans-serif; text-transform: uppercase; letter-spacing: -.02em; text-decoration: none; padding: 8px 4px; border-bottom: 1px solid #284446; opacity: 0; transform: translateY(10px); transition: opacity .35s, transform .45s var(--ease), color .2s; }
+  .sheet.open a { opacity: 1; transform: none; }
+  .sheet.open a:nth-child(2) { transition-delay: .04s; } .sheet.open a:nth-child(3) { transition-delay: .08s; } .sheet.open a:nth-child(4) { transition-delay: .12s; } .sheet.open a:nth-child(5) { transition-delay: .16s; }
+  .sheet a:active { color: var(--gold); }
+  .sheet .talk { justify-self: start; margin-top: 14px; padding: 14px 20px; font-size: 12px; }
+  /* right-click the logo */
+  .brand-menu { position: fixed; z-index: 70; display: grid; min-width: 220px; padding: 6px; border-radius: 10px; background: var(--night); border: 1px solid #284446; box-shadow: 0 8px 12px -6px rgba(0,0,0,.5); opacity: 0; transform: scale(.94); transform-origin: top left; pointer-events: none; transition: opacity .15s, transform .2s var(--ease); }
+  .brand-menu.open { opacity: 1; transform: none; pointer-events: auto; }
+  .brand-menu button, .brand-menu a { text-align: left; background: none; border: 0; color: var(--cream); font: 400 14px/1 Lato, sans-serif; padding: 10px 12px; border-radius: 6px; cursor: pointer; text-decoration: none; }
+  .brand-menu button:hover, .brand-menu a:hover { background: #24261f; color: var(--gold); }
+  .toast { position: fixed; left: 50%; bottom: 26px; z-index: 80; transform: translate(-50%, 20px); opacity: 0; background: var(--gold); color: var(--onyx); border-radius: 999px; padding: 10px 16px; font: 900 12px/1 Lato, sans-serif; letter-spacing: .1em; text-transform: uppercase; pointer-events: none; transition: opacity .25s, transform .35s cubic-bezier(.34,1.56,.64,1); }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  /* captions under the drawings */
+  .cap { position: absolute; z-index: 1; font: 900 11px/1.3 Lato, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--ink2); pointer-events: none; }
+  .dark .cap { color: #8fa3a0; }
+  .cap::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--gold-deep); margin-right: 7px; vertical-align: 1px; }
+  .dark .cap::before { background: var(--gold); }
+  /* cards lean toward the pointer */
+  .stage .card, .stage .tool, .stage .panel { transition: transform .5s var(--ease), box-shadow .5s var(--ease); will-change: transform; }
+  #t-head { filter: drop-shadow(0 0 6px rgba(255,209,102,.9)); }
+
+  /* the audit log, written as the thread works */
+  .log { position: fixed; left: 16px; bottom: 16px; z-index: 40; width: min(380px, calc(100vw - 32px)); color: #e8efed; font-size: 13px; line-height: 1.4; opacity: 0; transform: translateY(12px); transition: opacity .35s, transform .45s var(--ease); pointer-events: none; }
+  .log.on { opacity: 1; transform: none; pointer-events: auto; }
+  .log-tab { display: inline-flex; align-items: center; gap: 9px; padding: 9px 13px; border: 1px solid #2d4c4f; border-radius: 999px; background: rgba(9,30,33,.94); color: #e8efed; font: 900 11px/1 Lato, sans-serif; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; }
+  .log-tab i { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+  .log.fresh .log-tab i { animation: blink 1s steps(2, start) infinite; }
+  @keyframes blink { to { opacity: .2; } }
+  .log-tab b { color: var(--gold); font-variant-numeric: tabular-nums; }
+  .log-list { list-style: none; margin: 0 0 8px; padding: 0; display: grid; gap: 4px; max-height: 0; overflow: hidden; order: -1; }
+  .log { display: flex; flex-direction: column; align-items: flex-start; }
+  .log-list li { display: grid; grid-template-columns: auto 1fr; gap: 10px; padding: 7px 12px; border-radius: 8px; background: rgba(9,30,33,.94); border: 1px solid #2d4c4f; animation: entry .45s var(--ease) both; }
+  .log-list time { color: var(--gold); font-weight: 700; font-variant-numeric: tabular-nums; }
+  @keyframes entry { from { opacity: 0; transform: translateY(8px); } }
+  .log.fresh .log-list { max-height: 140px; }
+  .log.fresh:not(.open) .log-list li:nth-last-child(n+3) { display: none; }
+  .log.open .log-list { max-height: min(55vh, 460px); overflow-y: auto; overscroll-behavior: contain; }
+  @media (max-width: 700px) { .log { left: 10px; bottom: 10px; } .log.fresh:not(.open) .log-list li:nth-last-child(n+2) { display: none; } }
+
+  /* custom cursor */
+  .cursor { position: fixed; left: 0; top: 0; z-index: 60; width: 76px; height: 76px; margin: -38px 0 0 -38px; pointer-events: none; display: grid; place-items: center; transition: opacity .25s; will-change: transform; opacity: 0; }
+  .cursor::before { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 4.4px solid var(--gold-deep); transform: scale(.342); transition: transform .3s var(--ease), background-color .25s, border-color .25s; }
+  .cursor.on { opacity: 1; }
+  .cursor.on-dark::before { border-color: var(--gold); }
+  .cursor.big::before { transform: none; border-width: 1.5px; background: var(--gold); border-color: var(--gold); }
+  .cursor span { position: relative; font: 900 11px/1 Lato, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--onyx); opacity: 0; transition: opacity .2s; }
+  .cursor.big span { opacity: 1; }
+  @media (hover: none), (pointer: coarse) { .cursor { display: none; } }
+
+  /* hero: the signature, then the headline */
+  .hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 110px 0 40px; overflow: hidden; }
+  .hero h1 { font-size: min(clamp(64px, 14.4vw, 228px), calc((100svh - 240px) / 2.7)); }
+  .hero h1 .ln { will-change: transform; }
+  .hero h1 em { color: var(--gold); }
+  .hero-foot { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-top: clamp(28px, 5vh, 56px); }
+  .hero .lede { max-width: 48ch; }
+  .cue { display: flex; align-items: center; gap: 12px; color: #c9d4d1; white-space: nowrap; }
+  /* the opening: the GaVira mark, "AI Systems", then who is behind it; then the mark and the face move into place */
+  .opening { position: absolute; inset: 0; z-index: 5; display: grid; place-content: center; justify-items: center; gap: clamp(14px, 2.4vh, 24px); pointer-events: none; }
+  .o-logo { width: min(58vw, 560px); height: auto; filter: brightness(0) invert(1); }
+  .o-sys { font: 900 clamp(13px, 1.4vw, 18px)/1 Lato, sans-serif; letter-spacing: .5em; margin-right: -.5em; text-transform: uppercase; color: var(--gold); }
+  .o-sys i { display: inline-block; font-style: normal; }
+  .o-me { margin-top: clamp(16px, 3vh, 34px); }
+  .o-me img { width: 58px; height: 58px; }
+  .js.opening-on .hero-chip, .js.opening-on .top .brand img { opacity: 0; }
+  .me-chip { display: inline-flex; align-items: center; gap: 13px; text-align: left; }
+  .me-chip img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; outline: 1.5px solid var(--gold); outline-offset: 3px; }
+  .me-chip span { font-size: 13.5px; line-height: 1.4; color: #c9d4d1; }
+  .me-chip b { display: block; font: 900 12px/1.4 Lato, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--cream); }
+  .hero-about { display: grid; gap: 18px; justify-items: start; }
+  .js .hero .hero-in { opacity: 0; filter: blur(12px); transform: translateY(14px); }
+  .hero .hero-in { transition: opacity 1s var(--ease), filter 1s var(--ease), transform 1s var(--ease); }
+  .hero.ready .hero-in { opacity: 1; filter: blur(0); transform: none; }
+  .hero.ready .hero-in.late { transition-delay: .35s; }
+
+  /* method: read, decide, sign */
+  .method { padding: clamp(110px, 16vh, 180px) 0; }
+  .method .wrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 40px; align-items: center; }
+  .method h2 { font-size: clamp(42px, 5.3vw, 92px); }
+  .method .ln:nth-child(2), .method .ln:nth-child(4) { margin-left: .5em; }
+  .method .lede { margin-top: clamp(28px, 4vh, 44px); }
+  /* the four beats: drawings already on the page; the thread runs through each, and it lights and jolts */
+  .beats { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(30px, 6vh, 64px); width: min(100%, 470px); justify-self: center; }
+  .beat { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 24px; }
+  .beat:nth-child(even) { margin-left: clamp(40px, 8vw, 130px); }
+  .beat .art { width: clamp(92px, 8.5vw, 128px); animation: none; transform-origin: 50% 62%; transition: transform .5s var(--ease); }
+  .beat .art path { transition: stroke .5s; }
+  .beat .art.lit path { stroke: var(--gold-deep); stroke-width: 1.4; }
+  .beat .art.lit { animation: jolt 1s cubic-bezier(.34,1.56,.64,1) both; }
+  @keyframes jolt { 0% { transform: none; } 22% { transform: rotate(-8deg) scale(1.07); } 48% { transform: rotate(5deg) scale(1.03); } 72% { transform: rotate(-2deg); } 100% { transform: none; } }
+  .beat .label { margin: 0; font-size: 14.5px; line-height: 1.45; color: var(--ink2); max-width: 26ch; transition: opacity .6s, filter .6s, transform .6s var(--ease); }
+  .beat .label b { display: block; color: var(--onyx); margin-bottom: 4px; }
+  .js .beat .label { opacity: .4; filter: blur(2px); transform: translateX(-8px); }
+  .js .beat:has(.art.lit) .label { opacity: 1; filter: none; transform: none; }
+  @media (hover: hover) { .beat:hover .art.lit { transform: rotate(-4deg) translateY(-3px); } }
+
+  /* statement + capabilities */
+  .statement { padding: clamp(120px, 18vh, 200px) 0 0; }
+  .statement h2 { font-size: clamp(40px, 6.2vw, 104px); }
+  .statement .frame { position: relative; display: inline-block; padding: clamp(30px, 4.5vw, 64px) clamp(30px, 4.5vw, 70px); }
+  .statement .lede { margin: 22px 0 0 clamp(26px, 4vw, 60px); }
+  /* the ten systems as a routing table; the thread runs down its left edge and ticks each row */
+  .routes-wrap { padding: clamp(90px, 13vh, 150px) 0 clamp(110px, 16vh, 170px); }
+  .routes { max-width: 1240px; margin: 0 auto; }
+  .route { display: grid; grid-template-columns: 34px minmax(0, 1.05fr) minmax(0, 1.2fr) minmax(0, 1.35fr) minmax(0, .8fr); gap: 0 22px; align-items: baseline; padding: 17px 0; border-top: 1px solid #284446; transition: color .5s; }
+  .route .node { align-self: center; justify-self: start; }
+  .route b { font: 700 clamp(16px, 1.3vw, 19px)/1.3 Lato, sans-serif; }
+  .route span { font-size: 14.5px; line-height: 1.45; color: #a9b8b4; transition: color .5s; }
+  .route em { position: relative; font-style: normal; font-weight: 900; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--cream); }
+  .route em::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 1.5px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease) .15s; }
+  .js .route:not(.route-head):not(:has(.node.lit)) { color: #6e8784; }
+  .js .route:not(:has(.node.lit)) span, .js .route:not(:has(.node.lit)) em { color: #56706d; }
+  .route:has(.node.lit) em::after { transform: none; }
+  .route-head { padding: 0 0 12px; border-top: 0; }
+  .route-head span { font: 900 11px/1.3 Lato, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #7f9895; }
+  .route-group { padding: 34px 0 10px 56px; border-top: 1px solid #284446; }
+  .route-rule { max-width: 1240px; margin: 34px auto 0; padding-left: 56px; font-size: clamp(17px, 1.5vw, 21px); color: #c9d4d1; }
+  .route-rule em { font: italic 600 1.15em/1.3 'Playfair Display', serif; color: var(--gold); }
+
+  /* scenes: one finance desk each, drawn as a little world */
+  .scene { padding: clamp(80px, 12vh, 130px) 0 clamp(70px, 10vh, 110px); overflow: hidden; }
+  .scene-top { display: flex; justify-content: space-between; gap: 30px; align-items: start; }
+  .scene-top .plain { max-width: 40ch; font-size: clamp(15px, 1.15vw, 17px); text-align: right; color: var(--ink2); }
+  .dark .scene-top .plain { color: #c9d4d1; }
+  .stage { position: relative; height: clamp(620px, 58vw, 860px); margin-top: 26px; }
+  .stage > * { position: absolute; }
+  .stage .name { left: 50%; top: 42%; transform: translate(-50%, -50%); font-size: clamp(64px, 15.5vw, 250px); white-space: nowrap; z-index: 1; }
+  .stage .name .ln { width: max-content; max-width: none; }
+  .stage .name .w { display: inline-block; will-change: transform; }
+  .art { width: clamp(90px, 12vw, 180px); height: auto; z-index: 1; animation: breathe 7s ease-in-out infinite; overflow: visible; }
+  .art path { fill: none; stroke: var(--art); stroke-width: 1.1; vector-effect: non-scaling-stroke; }
+  .dark .art path { stroke: var(--art-dark); }
+  @keyframes breathe { 0%, 20%, 100% { transform: translateY(0) rotate(0); } 45%, 65% { transform: translateY(-6px) rotate(.6deg); } }
+  .stage .art:nth-of-type(2n) { animation-delay: -2.4s; } .stage .art:nth-of-type(3n) { animation-delay: -4.6s; }
+  .card { z-index: 3; width: clamp(220px, 21vw, 300px); background: var(--paper); color: var(--onyx); border: 1px solid #2a2c27; border-radius: 6px; padding: 14px 16px; font-size: 13.5px; line-height: 1.45; box-shadow: var(--lift-sm); }
+  .dark .card { background: #133236; color: var(--cream); border-color: #2d4c4f; box-shadow: 0 8px 12px -8px rgba(0,0,0,.6); }
+  .card h3 { display: flex; justify-content: space-between; gap: 10px; font: 900 11px/1.3 Lato, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; }
+  .card h3 span { color: var(--ink2); font-weight: 700; letter-spacing: .08em; }
+  .dark .card h3 { color: var(--gold); }
+  .dark .card h3 span { color: #8fa3a0; }
+  .card b { display: block; font-size: 15px; line-height: 1.3; }
+  .kv { display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 6px; }
+  .dark .kv { border-top-color: #284446; }
+  .kv > :last-child { font-weight: 900; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .big { font: 900 clamp(26px, 2.6vw, 38px)/1 Lato, sans-serif; letter-spacing: -.02em; margin-top: 4px; }
+  .ok { color: var(--teal); } .dark .ok { color: var(--soft); }
+  .no { color: var(--rust); } .dark .no { color: var(--rust-lite); }
+  .stamp { display: inline-block; margin-top: 10px; border: 1.5px solid var(--teal); color: var(--teal); border-radius: 4px; padding: 4px 8px; font: 900 11px/1.2 Lato, sans-serif; letter-spacing: .16em; text-transform: uppercase; transform: rotate(-4deg); }
+  .dark .stamp { border-color: var(--gold); color: var(--gold); }
+  .stamp.no { border-color: var(--rust); color: var(--rust); }
+  .dark .stamp.no { border-color: var(--rust-lite); color: var(--rust-lite); }
+  .pill { display: inline-flex; align-items: center; gap: 6px; font: 900 11px/1.2 Lato, sans-serif; letter-spacing: .12em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; border: 1.5px solid currentColor; background: var(--onyx); white-space: nowrap; }
+  .scene-foot { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 14px 30px; margin-top: 18px; }
+  .row { display: flex; justify-content: space-between; gap: 10px; border-top: 1px dashed #284446; padding: 7px 8px; margin: 0 -8px; font-size: 12.5px; border-radius: 3px; transition: background-color .5s; }
+  .row span:last-child { font-weight: 700; white-space: nowrap; }
+  .row.lit.good { background: rgba(163,177,138,.16); } .row.lit.bad { background: rgba(224,138,109,.16); }
+  .verdicts { display: grid; gap: 12px; z-index: 3; justify-items: start; }
+  .js .verdicts .rv:not(.lit) { transform: translateX(-10px); }
+  /* AP: a reader passes over the invoice, the fields it reads light up */
+  .invoice { overflow: visible; }
+  .invoice .scan-box { position: absolute; inset: 0; overflow: hidden; border-radius: 6px; pointer-events: none; }
+  .invoice .scan { position: absolute; left: 0; right: 0; top: -14%; height: 12%; background: linear-gradient(180deg, transparent, rgba(255,209,102,.6), transparent); opacity: 0; }
+  .invoice.lit .scan { animation: scan 1.5s var(--ease) .1s 1 both; }
+  @keyframes scan { 0% { top: -14%; opacity: 1; } 90% { opacity: 1; } 100% { top: 104%; opacity: 0; } }
+  .field { border-radius: 3px; outline: 1.5px solid transparent; outline-offset: 2px; transition: outline-color .4s, background-color .4s; }
+  .invoice.lit .field { outline-color: var(--gold-deep); background: rgba(255,209,102,.2); transition-delay: 1s; }
+  .js .invoice.rv:not(.lit) { opacity: 1; filter: none; }
+  .invoice { background: none; border: 0; box-shadow: none; }
+  .stack-under { position: absolute; inset: 0; z-index: -1; }
+  .stack-under i { position: absolute; inset: 0; background: var(--paper); border: 1px solid #2a2c27; border-radius: 6px; }
+  .stack-under i:nth-child(1) { transform: rotate(-4deg) translate(-12px, 10px); } .stack-under i:nth-child(2) { transform: rotate(3deg) translate(10px, 12px); }
+  .stack-under i:nth-child(3) { box-shadow: var(--lift-sm); }
+  /* content engine: one panel, the steps light in order */
+  .panel { z-index: 3; width: clamp(280px, 30vw, 420px); background: var(--paper); border: 1px solid #2a2c27; border-radius: 10px; padding: 18px 18px 14px; box-shadow: var(--lift); }
+  .panel h3 { font: 900 11px/1.3 Lato, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); display: flex; justify-content: space-between; margin-bottom: 6px; }
+  .step-row { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; padding: 11px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
+  .step-row .n { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--onyx); display: grid; place-items: center; font: 900 11px/1 Lato, sans-serif; }
+  .step-row b { display: block; font-size: 14px; }
+  .step-row small { color: var(--ink2); }
+  .approve { margin-top: 6px; padding-top: 12px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 12.5px; color: var(--ink2); }
+  .approve span:last-child { background: var(--onyx); color: var(--cream); border-radius: 999px; padding: 7px 12px; font: 900 11px/1 Lato, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+  .tool { z-index: 3; display: flex; gap: 12px; align-items: center; max-width: 250px; background: var(--paper); border: 1px solid #2a2c27; border-radius: 6px; padding: 10px 14px 10px 10px; font-size: 13px; line-height: 1.35; box-shadow: var(--lift-sm); }
+  .tool svg { width: 40px; height: 40px; flex: none; }
+  .tool svg path { fill: none; stroke: var(--onyx); stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .tool b { display: block; font-size: 13.5px; }
+
+  /* who it's for */
+  .who { padding: clamp(110px, 16vh, 180px) 0; }
+  .who .intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px); gap: 30px 50px; align-items: end; }
+  .services { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+  .services span { font-size: 13px; padding: 7px 13px; border-radius: 999px; border: 1px solid #2d4c4f; color: var(--cream); }
+  .verticals { margin-top: clamp(40px, 6vh, 64px); border-top: 1px solid #284446; }
+  .vertical { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr) minmax(0, 1.1fr); gap: 10px 30px; align-items: baseline; padding: 20px 0 20px 34px; border-bottom: 1px solid #284446; }
+  .vertical .node { position: absolute; left: 0; top: 27px; }
+  .vertical h3 { font: 900 clamp(19px, 1.8vw, 26px)/1.1 Lato, sans-serif; text-transform: uppercase; letter-spacing: -.01em; transition: color .3s, transform .35s var(--ease); }
+  .vertical p { color: #a9b8b4; font-size: 15px; }
+  .vertical .tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+  .vertical .tags span { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid #2d4c4f; color: #c9d4d1; transition: border-color .3s, color .3s; }
+  .vertical:hover h3 { color: var(--gold); transform: translateX(6px); }
+  .vertical:hover .tags span { border-color: var(--gold); color: var(--cream); }
+
+  /* how we work */
+  .how { padding: clamp(110px, 16vh, 180px) 0; }
+  .how .cols { max-width: 1180px; }
+  .steps { margin-top: clamp(40px, 6vh, 64px); }
+  .step { display: grid; grid-template-columns: 80px 1fr; gap: 18px; padding: 26px 0; border-top: 1.5px solid var(--onyx); }
+  .step .n { display: flex; align-items: center; gap: 12px; font: 900 15px/1 Lato, sans-serif; color: var(--teal); padding-top: 6px; }
+  .step h3 { font: 900 clamp(24px, 2.6vw, 36px)/1 Lato, sans-serif; text-transform: uppercase; letter-spacing: -.02em; }
+  .step p { margin-top: 8px; color: var(--ink2); max-width: 54ch; }
+  .terms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 40px; }
+  .terms > div { border: 1px solid #2a2c27; border-radius: 12px; padding: 22px 24px; background: var(--paper); }
+  .terms h3 { font: 900 13px/1.2 Lato, sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+  .terms ul { list-style: none; margin-top: 12px; display: grid; gap: 9px; }
+  .terms li { display: flex; gap: 10px; align-items: flex-start; font-size: 15.5px; }
+  .terms li svg { margin-top: .25em; color: var(--teal); }
+  .terms .not li svg { color: var(--rust); }
+  .terms .price p { margin-top: 12px; font-size: 15.5px; color: var(--ink2); }
+  .terms .price p strong { color: var(--onyx); }
+
+  /* about: the person's mark */
+  .about { padding: clamp(110px, 16vh, 180px) 0; border-top: 1px solid var(--line); }
+  .about .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 50px; align-items: center; }
+  .about .lede { margin-top: 28px; }
+  .about .who-am { display: flex; gap: 20px; align-items: center; margin-top: 34px; }
+  .about .who-am img { width: 120px; height: 150px; object-fit: cover; object-position: top; border-radius: 10px; background: #e5e8dd; }
+  .about .who-am b { display: block; font: 900 15px/1.2 Lato, sans-serif; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
+  .about .who-am span { color: var(--ink2); font-size: 15px; }
+  /* the voucher: the thread reaches the approval line and the stamp comes down */
+  .voucher { position: relative; justify-self: center; width: min(420px, 100%); background: var(--paper); border: 1px solid #2a2c27; border-radius: 6px; padding: 22px 24px 26px; font-size: 14.5px; box-shadow: var(--lift); transform: rotate(-1.2deg); }
+  .v-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 10px; margin-bottom: 4px; border-bottom: 1.5px solid var(--onyx); }
+  .v-head .meta { color: var(--teal); }
+  .v-head span:last-child { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .voucher .kv span:last-child { font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+  .v-sign { display: flex; align-items: center; gap: 12px; margin-top: 96px; }
+  .v-sign .meta { color: var(--ink2); white-space: nowrap; }
+  .v-line { flex: 1; height: 1px; background: var(--onyx); }
+  .stamp-mark { position: absolute; right: 26px; bottom: 30px; display: grid; justify-items: center; gap: 2px; padding: 10px 16px; border: 3px solid var(--teal); outline: 1.5px solid var(--teal); outline-offset: 3px; border-radius: 6px; color: var(--teal); text-transform: uppercase; filter: url(#ink); opacity: 0; transform: rotate(-9deg) scale(1.7); pointer-events: none; }
+  .stamp-mark b { font: 900 22px/1 Lato, sans-serif; letter-spacing: .16em; }
+  .stamp-mark span { font: 900 11px/1.3 Lato, sans-serif; letter-spacing: .14em; }
+  .voucher:has(.node.lit) .stamp-mark { animation: stamp .55s cubic-bezier(.5, 0, .75, 0) .1s both; }
+  .voucher:has(.node.lit) { animation: thump .5s var(--ease) .55s both; }
+  @keyframes stamp { 0% { opacity: 0; transform: rotate(-9deg) scale(1.7); } 100% { opacity: .9; transform: rotate(-9deg) scale(1); } }
+  @keyframes thump { 0% { transform: rotate(-1.2deg); } 30% { transform: rotate(-1.2deg) translateY(3px) scale(.99); } 100% { transform: rotate(-1.2deg); } }
+
+  /* contact: the tangle you pull */
+  .contact { min-height: 100svh; padding: clamp(110px, 15vh, 160px) 0 26px; display: flex; flex-direction: column; }
+  .finale { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 42%); gap: 40px; align-items: center; width: 100%; }
+  .contact h2 { font-size: clamp(46px, 6.8vw, 124px); }
+  .contact .ln:nth-child(2) { margin-left: .35em; }
+  .contact .lede { margin-top: clamp(24px, 4vh, 40px); }
+  /* the sign-off: a short note in her hand, signed as the thread arrives, and one way to book */
+  .note { align-self: center; max-width: 460px; }
+  .note-text { font: italic 600 clamp(20px, 1.75vw, 27px)/1.45 'Playfair Display', serif; color: var(--cream); }
+  .note-sig { position: relative; height: clamp(90px, 9vw, 124px); margin-top: 14px; border-bottom: 1.5px solid #3d5a5c; }
+  .note-sig .node { position: absolute; left: -5.5px; bottom: -6.5px; }
+  .note-sig canvas { position: absolute; left: 6px; bottom: 6px; height: calc(100% - 4px); width: auto; max-width: calc(100% - 6px); }
+  .note-name { display: block; margin-top: 10px; padding-left: 16px; font-size: 13.5px; color: #a9b8b4; }
+  .note-cta { display: flex; align-items: center; gap: 12px 18px; flex-wrap: wrap; margin-top: clamp(30px, 5vh, 46px); }
+  .note-cta small { color: #a9b8b4; font-size: 13.5px; }
+  .book-now { display: inline-flex; align-items: center; gap: 12px; padding: 18px 28px; border: 1.5px solid var(--gold); border-radius: 999px; background: transparent; color: var(--gold); font: 900 13px/1 Lato, sans-serif; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; transition: background-color .5s var(--ease), color .5s var(--ease), transform .25s var(--ease); }
+  .book-now.lit { background: var(--gold); color: var(--onyx); }
+  .book-now .i { width: 16px; height: 16px; transition: transform .25s var(--ease); }
+  .book-now:hover .i { transform: translate(3px, -3px); }
+  .key-hint { color: #8fa3a0; font-size: 13px; }
+  kbd { display: inline-grid; place-items: center; min-width: 26px; height: 26px; padding: 0 6px; margin-left: 4px; border: 1px solid #3d5a5c; border-bottom-width: 3px; border-radius: 6px; font: 900 12px/1 Lato, sans-serif; color: var(--cream); transition: transform .08s, border-bottom-width .08s, background-color .15s, color .15s; }
+  kbd.pressed { transform: translateY(2px); border-bottom-width: 1px; background: var(--gold); color: var(--onyx); border-color: var(--gold); }
+  @media (hover: none) { .key-hint { display: none; } }
+  .contact-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px 24px; margin-top: 60px; font-size: 13px; color: #8fa3a0; width: 100%; }
+  .contact-bottom a { color: #c9d4d1; text-decoration: none; }
+  .contact-bottom a:hover { color: var(--gold); }
+
+  /* the conversation, after the thread is pulled */
+  dialog.talk-dialog { border: 0; padding: 0; background: transparent; width: min(1080px, 94vw); max-width: none; max-height: calc(100dvh - 24px); margin: auto; overflow: auto; overscroll-behavior: contain; color: var(--cream); }
+  dialog.talk-dialog::backdrop { background: rgba(4,18,20,.78); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+  .talk-card { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 60px); background: #0f2a2d; border: 1px solid #284446; border-radius: 6px; padding: clamp(28px, 4vw, 54px); }
+  dialog[open] .talk-card { animation: arrive .6s var(--ease) both; }
+  @keyframes arrive { from { opacity: 0; transform: translateX(32px); } to { opacity: 1; transform: none; } }
+  .talk-card h2 { font-size: clamp(34px, 4.2vw, 64px); line-height: .92; padding-right: 44px; }
+  .talk-card h2 em { display: block; margin-top: .16em; color: var(--gold); font-size: .86em; }
+  .talk-card .note { margin-top: 22px; color: #c9d4d1; font-size: 15.5px; max-width: 34ch; }
+  .talk-card .sig { display: block; width: 220px; height: auto; margin-top: 18px; }
+  .copy { background: none; border: 1px solid #3d5a5c; border-radius: 999px; color: #c9d4d1; font: 700 11px/1 Lato, sans-serif; letter-spacing: .08em; padding: 5px 9px; margin-left: 6px; cursor: pointer; }
+  .copy:hover { border-color: var(--gold); color: var(--gold); }
+  dialog .close { position: absolute; top: 14px; right: 14px; z-index: 2; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: none; border: 1px solid #3d5a5c; color: var(--cream); cursor: pointer; transition: transform .35s var(--ease), border-color .25s; }
+  dialog .close .i { width: 16px; height: 16px; }
+  dialog .close:hover { transform: rotate(90deg); border-color: var(--gold); }
+  .book { display: grid; align-content: start; gap: 26px; padding-top: 6px; }
+  .book-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: s; }
+  .book-steps li { counter-increment: s; display: grid; grid-template-columns: 44px 1fr; gap: 2px 14px; padding: 16px 0; border-top: 1px solid #284446; opacity: 0; transform: translateY(10px); }
+  .book-steps li::before { content: '0' counter(s); grid-row: span 2; font: 900 12px/1.6 Lato, sans-serif; letter-spacing: .14em; color: var(--gold); }
+  .book-steps b { font: 900 15px/1.3 Lato, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+  .book-steps span { color: #a9b8b4; font-size: 15px; }
+  dialog[open] .book-steps li { animation: rise .6s var(--ease) both; }
+  dialog[open] .book-steps li:nth-child(2) { animation-delay: .12s; } dialog[open] .book-steps li:nth-child(3) { animation-delay: .24s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  .book-btn { justify-self: start; display: inline-flex; align-items: center; gap: 12px; background: var(--gold); color: var(--onyx); border-radius: 999px; padding: 18px 28px; text-decoration: none; font: 900 13px/1 Lato, sans-serif; letter-spacing: .16em; text-transform: uppercase; transition: transform .25s var(--ease), background-color .25s; }
+  .book-btn:hover { background: #ffdc85; }
+  .book-btn .i { width: 16px; height: 16px; transition: transform .25s var(--ease); }
+  .book-btn:hover .i { transform: translate(3px, -3px); }
+  .book .write { color: #8fa3a0; font-size: 14px; margin: 0; }
+  .book .write a { color: #c9d4d1; }
+  .book-frame { border-radius: 8px; overflow: hidden; background: #fff; }
+  .book-frame iframe { display: block; width: 100%; height: min(620px, 66vh); border: 0; }
+  .talk-dialog.embedded .book-steps, .talk-dialog.embedded .book-btn { display: none; }
+  .film-dialog { border: 0; padding: 0; background: transparent; max-width: min(1100px, 94vw); width: 100%; margin: auto; overflow: visible; }
+  .film-dialog::backdrop { background: rgba(6,22,24,.9); }
+  .film-dialog video { width: 100%; border-radius: 8px; background: #000; display: block; }
+  .film-dialog .close { top: -46px; right: 0; }
+
+  @media (max-width: 999px) {
+    .method .wrap, .about .wrap, .finale, .who .intro { grid-template-columns: 1fr; }
+    .beats { margin-top: 34px; }
+    .route { grid-template-columns: minmax(0, 1fr); gap: 4px; padding: 16px 0; }
+    .route .node { position: absolute; margin: 4px 0 0 calc(var(--gutter) / -2 - 5.5px); }
+    .route { position: relative; }
+    .route span[data-k]::before { content: attr(data-k) ' · '; font-weight: 900; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #7f9895; }
+    .route-head { display: none; }
+    .route-group, .route-rule { padding-left: 0; }
+    .stage { height: auto; display: flex; flex-direction: column; gap: 18px; padding-left: 26px; }
+    .stage > * { position: relative !important; left: auto !important; top: auto !important; transform: none; width: auto !important; max-width: 440px; }
+    .stage .name { font-size: clamp(50px, 14vw, 120px); order: -1; margin: 0 0 6px -26px; white-space: normal; transform: none !important; }
+    .stage .name .ln { width: auto; }
+    .note-sig .node { left: calc(var(--gutter) / -2 - 5.5px); }
+    .node.narrow-only { display: block; }
+    .stage .art, .stage .cap { display: none; }
+    .verdicts { grid-auto-flow: column; justify-content: start; overflow-x: auto; padding-bottom: 4px; }
+    .scene-top { flex-direction: column; } .scene-top .plain { text-align: left; }
+    .vertical { grid-template-columns: 1fr; } .vertical .tags { justify-content: flex-start; }
+    .terms { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 700px) {
+    .ln { width: auto; }
+    .menu-btn { display: inline-flex; }
+    .top .talk { display: none; }
+    .sheet .talk { display: inline-flex; }
+    .beats { justify-self: start; }
+    .beat, .beat:nth-child(even) { margin-left: 0; gap: 18px; }
+    .beat .art { width: 76px; }
+    .beat .label { font-size: 14px; }
+    .verdicts { display: flex; flex-wrap: wrap; gap: 8px; }
+    .top .navlink { display: none; }
+    .hero-foot { flex-direction: column; align-items: start; }
+    .cue { flex-direction: row-reverse; justify-content: flex-end; }
+    .cue .node { margin-left: calc(var(--gutter) / -2 - 5.5px); }
+    .talk-card { grid-template-columns: 1fr; }
+    .book-frame iframe { height: 72vh; }
+    .step { grid-template-columns: 56px 1fr; }
+    .method .ln:nth-child(2), .method .ln:nth-child(4), .contact .ln:nth-child(2) { margin-left: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="ink"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4"/></filter>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4v10M12 19.5v.01"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 20V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v15M6 13l6 6 6-6"/></symbol>
+</svg>
+
+<header class="top on-dark" id="top">
+  <a class="brand" href="#hero" aria-label="GaVira Systems, back to the start"><img src="img/wordmark.png" alt="GaVira" width="1184" height="276"><span>SYSTEMS</span></a>
+  <nav aria-label="Main">
+    <a class="navlink" href="#build">What we build</a>
+    <a class="navlink" href="#work">See it work</a>
+    <a class="navlink" href="#who">Who it's for</a>
+    <a class="navlink" href="#how">How we work</a>
+    <a class="navlink" href="#about">About</a>
+    <button class="talk" type="button" data-talk data-magnet>Let's talk</button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet"><span>Menu</span><i></i></button>
+  </nav>
+  <div class="progress" aria-hidden="true"><i></i></div>
+</header>
+<nav class="sheet" id="sheet" aria-label="Menu">
+  <a href="#build">What we build</a><a href="#work">See it work</a><a href="#who">Who it's for</a><a href="#how">How we work</a><a href="#about">About</a>
+  <button class="talk" type="button" data-talk>Let's talk</button>
+</nav>
+<div class="brand-menu" role="menu" aria-label="GaVira Systems"><button role="menuitem" data-copy>Copy email address</button><button role="menuitem" data-talk>Start a conversation</button><a role="menuitem" href="#hero">Back to the start</a></div>
+<div class="toast" role="status" aria-live="polite"></div>
+<div class="cursor" aria-hidden="true"><span></span></div>
+<aside class="log" aria-label="Audit log of this visit"><button class="log-tab" type="button" aria-expanded="false"><i aria-hidden="true"></i><span>Audit log</span><b>0</b></button><ol class="log-list" aria-live="polite"></ol></aside>
+
+<main>
+  <section class="hero dark" id="hero">
+    <div class="opening" aria-hidden="true">
+      <img class="o-logo" src="img/wordmark.png" alt="" width="1184" height="276">
+      <p class="o-sys">AI Systems</p>
+      <div class="me-chip o-me"><img src="img/v-face.webp" alt="" width="240" height="240"><span><b>Vidhya Ramaprasad</b>Co-founder, GaVira</span></div>
+    </div>
+    <div class="wrap">
+      <i class="pin" data-thread="edge" data-out="right" data-nobow></i>
+      <h1 class="mega hero-in" aria-label="AI systems that show their work.">
+        <span class="ln">AI systems</span>
+        <span class="ln">that show</span>
+        <span class="ln"><em data-thread="under">their work.</em></span>
+      </h1>
+      <div class="hero-foot">
+        <div class="hero-about">
+          <div class="me-chip hero-chip"><img src="img/v-face.webp" alt="" width="240" height="240"><span><b>Vidhya Ramaprasad</b>Co-founder, GaVira</span></div>
+          <p class="lede hero-in late">GaVira Systems is how GaVira builds AI automation for finance, operations and growth teams. Every system logs what it did, and waits for a person before anything goes out.</p>
+        </div>
+        <span class="cue meta hero-in late">Scroll to follow the work <i class="node" data-thread></i></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="method" id="method" aria-label="How every system works">
+    <div class="wrap">
+      <div>
+        <h2 class="mega h2 blur-in"><span class="ln">From what lands</span><span class="ln">in your inbox</span><span class="ln">to what you</span><span class="ln"><em style="color:var(--teal)">can sign.</em></span></h2>
+        <p class="lede">Invoices, statements, forms, emails. Every system we build does the same three things with them, in this order.</p>
+      </div>
+      <ol class="beats">
+        <li class="beat"><svg class="art" data-art="envelope-simple" data-thread data-log="Received: invoice IPL/26-27/0612, Indus Petrochem"></svg><p class="label"><b class="meta">Lands</b>An invoice, a statement, a form, an email.</p></li>
+        <li class="beat"><svg class="art" data-art="scan" data-thread data-log="Read: 3 fields, each tied to page 1"></svg><p class="label"><b class="meta">Read</b>The AI reads it, and keeps the page each figure came from.</p></li>
+        <li class="beat"><svg class="art" data-art="scales" data-thread data-log="Checked against your AP policy: clear"></svg><p class="label"><b class="meta">Decide</b>Your written rules decide what is clear and what is held.</p></li>
+        <li class="beat"><svg class="art" data-art="pen-nib" data-thread data-log="Held for sign-off by the AP lead"></svg><p class="label"><b class="meta">Sign</b>A named person approves before anything goes out.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="dark" id="build" aria-label="What we build">
+    <div class="statement">
+      <div class="wrap">
+        <div class="frame" data-thread="frame">
+          <h2 class="mega blur-in"><span class="ln">We build the automation.</span><span class="ln">And the paper trail</span><span class="ln gold"><em>behind it.</em></span></h2>
+        </div>
+        <p class="lede">Built by an engineer from fintech, where a wrong number costs real money. Every step is logged, so you can show an auditor exactly what happened.</p>
+      </div>
+    </div>
+    <div class="routes-wrap">
+      <div class="wrap">
+        <div class="routes" role="table" aria-label="The ten systems we build">
+          <div class="route route-head" role="row"><i></i><span role="columnheader">System</span><span role="columnheader">What comes in</span><span role="columnheader">What it checks</span><span role="columnheader">Who signs</span></div>
+          <p class="route-group meta gold">Back office</p>
+          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Document processing, signed by the operations lead"></i><b role="rowheader">Document processing</b><span role="cell" data-k="In">Invoices, statements, KYC files, CVs</span><span role="cell" data-k="Checks">Every figure against the page it came from</span><span role="cell" data-k="Signs"><em>Operations lead</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Reconciliation, signed by the finance controller"></i><b role="rowheader">Reconciliation</b><span role="cell" data-k="In">Your books, bank feeds, the tax portal</span><span role="cell" data-k="Checks">Each line matched, each difference explained</span><span role="cell" data-k="Signs"><em>Finance controller</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Reporting, signed by the CFO"></i><b role="rowheader">Reporting</b><span role="cell" data-k="In">The week's numbers from your systems</span><span role="cell" data-k="Checks">Totals tie back to the books</span><span role="cell" data-k="Signs"><em>CFO</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Compliance checks, signed by the compliance officer"></i><b role="rowheader">Compliance checks</b><span role="cell" data-k="In">KYC files, approvals, limits</span><span role="cell" data-k="Checks">Your policy and who may approve what</span><span role="cell" data-k="Signs"><em>Compliance officer</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Onboarding, signed by the account owner"></i><b role="rowheader">Onboarding</b><span role="cell" data-k="In">A signed contract</span><span role="cell" data-k="Checks">Invoice, intake and kickoff, in order</span><span role="cell" data-k="Signs"><em>Account owner</em></span></div>
+          <p class="route-group meta gold">Front office</p>
+          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Lead generation, signed by the sales lead"></i><b role="rowheader">Lead generation</b><span role="cell" data-k="In">Your ideal customer, written down</span><span role="cell" data-k="Checks">Fit, source and contact details</span><span role="cell" data-k="Signs"><em>Sales lead</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread data-log="Routed: AI agents, signed by the support lead"></i><b role="rowheader">AI agents</b><span role="cell" data-k="In">Questions on WhatsApp and the web</span><span role="cell" data-k="Checks">Answers come only from your documents</span><span role="cell" data-k="Signs"><em>Support lead</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread data-log="Routed: CRM and pipeline, signed by the sales manager"></i><b role="rowheader">CRM and pipeline</b><span role="cell" data-k="In">Deals, limits and follow-ups</span><span role="cell" data-k="Checks">Who owns what, and what is overdue</span><span role="cell" data-k="Signs"><em>Sales manager</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Content engine, signed by the founder"></i><b role="rowheader">Content engine</b><span role="cell" data-k="In">What people are talking about this week</span><span role="cell" data-k="Checks">Hook, voice and four brand gates</span><span role="cell" data-k="Signs"><em>Founder</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Retention and reviews, signed by the customer success"></i><b role="rowheader">Retention and reviews</b><span role="cell" data-k="In">Customer activity</span><span role="cell" data-k="Checks">Early signs a customer is drifting</span><span role="cell" data-k="Signs"><em>Customer success</em></span></div>
+        </div>
+        <p class="route-rule">Ten systems, one rule: <em>the AI reads, your rules decide, a person signs.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <div id="work">
+  <section class="scene" id="credit" aria-labelledby="credit-name">
+    <div class="wrap">
+      <div class="scene-top"><p class="meta">01 / Credit management</p><p class="plain">Decide who gets credit, and how much, by your own written policy. Every approval goes to the person allowed to give it.</p></div>
+      <div class="stage">
+        <h2 class="mega name blur-in" id="credit-name"><span class="ln">Credit Desk</span></h2>
+        <svg class="art" data-cap="The customer" data-art="warehouse" data-thread style="left:0;top:4%"></svg>
+        <div class="card" data-thread data-log="Credit application read: Kaveri Agro Distributors" data-at="left" style="left:16%;top:0"><h3>Application</h3><b>Kaveri Agro Distributors</b><div class="kv"><span>Turnover</span><span>₹14.20 Cr</span></div><div class="kv"><span>Current limit</span><span>₹40.0 L</span></div></div>
+        <svg class="art" data-cap="Limit check" data-art="gauge" data-thread style="left:42%;top:2%"></svg>
+        <div class="card" style="left:59%;top:6%"><h3>Approval matrix</h3><div class="kv"><span>Up to ₹50 L</span><span>Finance controller</span></div><div class="kv"><span>Above ₹50 L</span><span>CFO</span></div><span class="stamp rv" data-thread data-log="Limit above ₹50 L: routed to the CFO" data-at="left">Routed to the CFO</span></div>
+        <svg class="art" data-cap="Order release" data-art="truck" data-thread style="left:84%;top:4%"></svg>
+        <div class="card" style="left:66%;top:64%"><h3>Order release</h3><b class="no rv" data-thread data-log="Order held: customer over limit" data-at="right">Held: customer over limit</b><div class="kv"><span>Reason</span><span>On record</span></div></div>
+        <svg class="art" data-cap="Approval on record" data-art="stamp" data-thread style="left:43%;top:66%"></svg>
+        <div class="card" style="left:6%;top:62%"><h3>Owed to us <span>sample</span></h3><div class="big rv" data-thread data-log="Owed to us totalled: ₹2.92 Cr" data-at="right" data-count="2.92" data-pre="₹" data-post=" Cr" data-dp="2">₹2.92 Cr</div><div class="kv"><span>Overdue</span><span class="rv" data-thread data-at="right">₹1.04 Cr</span></div><div class="kv"><span>Days to collect</span><span>52 days</span></div></div>
+      </div>
+      <div class="scene-foot"><button class="link" data-film="credit" data-cursor="Play"><svg class="i"><use href="#i-play"/></svg>Watch the film</button><a class="link" href="https://gavira-systems.github.io/gavira-finance-demos/credit-desk/" target="_blank" rel="noopener" data-cursor="Open">Open the live desk<svg class="i"><use href="#i-out"/></svg></a></div>
+    </div>
+  </section>
+
+  <section class="scene dark" id="gst" aria-labelledby="gst-name">
+    <div class="wrap">
+      <div class="scene-top"><p class="meta">02 / Tax reconciliation</p><p class="plain">Match every supplier invoice in your books against what the tax portal shows, then chase each gap with one email per supplier.</p></div>
+      <div class="stage">
+        <h2 class="mega name blur-in" id="gst-name"><span class="ln">GST Desk</span></h2>
+        <svg class="art" data-cap="Purchase register" data-art="books" data-thread style="left:0;top:4%"></svg>
+        <div class="card" style="left:12%;top:0;width:clamp(240px,25vw,340px)"><h3>Our books</h3>
+          <div class="row good" data-pair="1"><span>IPL/26-27/0414</span><span>Booked</span></div>
+          <div class="row bad" data-pair="2"><span>KMB-0436</span><span>₹1,85,000</span></div>
+          <div class="row bad" data-pair="3"><span>SC/0444</span><span>Booked</span></div>
+          <div class="row bad" data-pair="4"><span>IPL/26-27/0426</span><span>Booked</span></div>
+        </div>
+        <div class="verdicts" style="left:42%;top:3%">
+          <span class="pill ok rv" data-thread data-log="Matched with GSTR-2B: IPL/26-27/0414" data-at="left" data-also="[data-pair='1']"><svg class="i"><use href="#i-check"/></svg>Format only</span>
+          <span class="pill no rv" data-thread data-log="Mismatch: KMB-0436 amount differs" data-at="left" data-also="[data-pair='2']"><svg class="i"><use href="#i-alert"/></svg>Amount differs</span>
+          <span class="pill no rv" data-thread data-at="left" data-also="[data-pair='3']"><svg class="i"><use href="#i-x"/></svg>Not filed</span>
+          <span class="pill no rv" data-thread data-log="Mismatch: IPL/26-27/0426 wrong GSTIN" data-at="left" data-also="[data-pair='4']"><svg class="i"><use href="#i-alert"/></svg>Wrong GSTIN</span>
+        </div>
+        <div class="card" style="left:57%;top:0;width:clamp(240px,25vw,340px)"><h3>Tax portal · GSTR-2B</h3>
+          <div class="row good" data-pair="1"><span>IPL/2627/414</span><span>Same invoice</span></div>
+          <div class="row bad" data-pair="2"><span>KMB-0436</span><span>₹1,58,000</span></div>
+          <div class="row bad" data-pair="3"><span>SC/0444</span><span>Not filed yet</span></div>
+          <div class="row bad" data-pair="4"><span>IPL/26-27/0426</span><span>Other state</span></div>
+        </div>
+        <svg class="art" data-cap="Tax portal" data-art="bank" data-thread style="left:86%;top:2%"></svg>
+        <div class="card" data-thread data-at="left" style="left:63%;top:63%"><h3>Supplier follow-up</h3><b>One email per supplier</b><div class="kv"><span>Drafted</span><span>3</span></div><span class="stamp rv" data-thread data-log="3 supplier emails drafted, waiting for sign-off" data-at="left">Waiting for sign-off</span></div>
+        <svg class="art" data-cap="Supplier email" data-art="envelope-simple" data-thread style="left:43%;top:66%"></svg>
+        <div class="card" style="left:6%;top:63%"><h3>Tax credit you can claim</h3><div class="big rv" data-thread data-log="Tax credit you can claim: ₹13.85 L" data-at="right" data-count="13.85" data-pre="₹" data-post=" L" data-dp="2">₹13.85 L</div><div class="kv"><span>Held until suppliers fix</span><span>₹2.34 L</span></div></div>
+      </div>
+      <div class="scene-foot"><button class="link" data-film="gst" data-cursor="Play"><svg class="i"><use href="#i-play"/></svg>Watch the film</button><a class="link" href="https://gavira-systems.github.io/gavira-finance-demos/gst-desk/" target="_blank" rel="noopener" data-cursor="Open">Open the live desk<svg class="i"><use href="#i-out"/></svg></a></div>
+    </div>
+  </section>
+
+  <section class="scene" id="ap" aria-labelledby="ap-name">
+    <div class="wrap">
+      <div class="scene-top"><p class="meta">03 / Accounts payable</p><p class="plain">Read every supplier bill, check it against the purchase order and what actually arrived, and hold anything that doesn't add up.</p></div>
+      <div class="stage">
+        <h2 class="mega name blur-in" id="ap-name"><span class="ln">AP Desk</span></h2>
+        <svg class="art" data-cap="Goods received" data-art="package" data-thread style="left:0;top:6%"></svg>
+        <div class="card invoice rv" data-thread data-log="Invoice read: IPL/26-27/0612" data-at="left" style="left:16%;top:0;width:clamp(250px,24vw,330px)"><div class="stack-under"><i></i><i></i><i></i></div><div class="scan-box"><i class="scan"></i></div>
+          <h3>Tax invoice <span>Indus Petrochem</span></h3>
+          <div class="kv"><span>Invoice no.</span><span class="field">IPL/26-27/0612</span></div>
+          <div class="kv"><span>Purchase order</span><span class="field">PO/26-27/0144</span></div>
+          <div class="kv"><span>HDPE resin</span><span class="field">12,000 kg</span></div>
+        </div>
+        <div class="card" style="left:51%;top:2%"><h3>What it checked</h3>
+          <div class="kv"><span>Purchase order</span><span class="ok rv" data-thread data-at="right"><svg class="i"><use href="#i-check"/></svg>Matches</span></div>
+          <div class="kv"><span>Goods received</span><span class="ok rv" data-thread data-at="right"><svg class="i"><use href="#i-check"/></svg>12,000 kg</span></div>
+          <div class="kv"><span>Paid before?</span><span class="ok rv" data-thread data-at="right"><svg class="i"><use href="#i-check"/></svg>No</span></div>
+          <span class="stamp rv" data-thread data-log="Three-way match passed: ready to post" data-at="left">Ready to post</span>
+        </div>
+        <svg class="art" data-cap="Purchase order" data-art="files" data-thread style="left:84%;top:6%"></svg>
+        <div class="card" style="left:66%;top:62%"><h3>October · 13 invoices</h3>
+          <div class="kv"><span>Ready to post</span><span class="rv" data-thread data-at="right" data-count="6">6</span></div>
+          <div class="kv"><span>Held with a reason</span><span class="rv" data-thread data-at="right" data-count="5">5</span></div>
+          <div class="kv"><span>Duplicate caught</span><span class="no rv" data-thread data-at="right" data-count="1">1</span></div>
+          <div class="kv"><span>Couldn't read</span><span class="rv" data-thread data-at="right" data-count="1">1</span></div>
+        </div>
+        <svg class="art" data-cap="Supplier bill" data-art="receipt" data-thread style="left:44%;top:68%"></svg>
+        <div class="card" style="left:8%;top:64%"><h3>Tax invoice <span>Konark Masterbatches</span></h3><b>KMB-0471</b><div class="kv"><span>Already paid as</span><span>KMB-0417</span></div><span class="stamp no rv" data-thread data-log="Duplicate caught: KMB-0471 already paid as KMB-0417" data-at="right">Duplicate</span></div>
+      </div>
+      <div class="scene-foot"><button class="link" data-film="ap" data-cursor="Play"><svg class="i"><use href="#i-play"/></svg>Watch the film</button><a class="link" href="https://gavira-systems.github.io/gavira-finance-demos/ap-desk/" target="_blank" rel="noopener" data-cursor="Open">Open the live desk<svg class="i"><use href="#i-out"/></svg></a></div>
+    </div>
+  </section>
+
+  <section class="scene dark" id="ipo" aria-labelledby="ipo-name">
+    <div class="wrap">
+      <div class="scene-top"><p class="meta">04 / Going public</p><p class="plain">Run the document room for an IPO. Every request has an owner and a date, and every upload is checked the moment it lands.</p></div>
+      <div class="stage">
+        <h2 class="mega name blur-in" id="ipo-name"><span class="ln">IPO Room</span></h2>
+        <svg class="art" data-cap="Listing day" data-art="bell" data-thread style="left:0;top:4%"></svg>
+        <div class="card" style="left:14%;top:0;width:clamp(270px,30vw,400px)"><h3>Data room requests</h3>
+          <div class="kv"><span>Certificate of incorporation</span><span class="ok rv" data-thread data-at="right"><svg class="i"><use href="#i-check"/></svg></span></div>
+          <div class="kv"><span>Memorandum and articles</span><span class="ok rv" data-thread data-at="right"><svg class="i"><use href="#i-check"/></svg></span></div>
+          <div class="kv"><span>Board minutes, three years</span><span class="ok rv" data-thread data-at="right"><svg class="i"><use href="#i-check"/></svg></span></div>
+          <div class="kv"><span>Statutory registers</span><span class="ok rv" data-thread data-at="right"><svg class="i"><use href="#i-check"/></svg></span></div>
+          <div class="kv"><span>Audited financials FY 2025-26</span><span class="no rv" data-thread data-log="Upload sent back: FY 2025-26 financials not signed" data-at="right"><svg class="i"><use href="#i-x"/></svg>Not signed</span></div>
+        </div>
+        <svg class="art" data-cap="Data room" data-art="folders" data-thread style="left:53%;top:2%"></svg>
+        <div class="card" style="left:72%;top:4%"><h3>Accepted so far</h3><div class="big rv" data-thread data-log="Data room: 36% accepted" data-at="left" data-count="36" data-post="%">36%</div><div class="kv"><span>Overdue</span><span>6</span></div><div class="kv"><span>Sent back</span><span>3</span></div></div>
+        <div class="card" style="left:74%;top:66%"><h3>Who decides</h3><b>The company secretary</b><div class="kv"><span>Accepts their own upload?</span><span>Never</span></div></div>
+        <svg class="art" data-cap="Related parties" data-art="scales" data-thread style="left:54%;top:64%"></svg>
+        <div class="card" style="left:8%;top:64%"><h3>Weekly related-party scan</h3><b>Flags go to the company secretary</b><span class="stamp no rv" data-thread data-log="Related-party scan: 1 flag for the company secretary" data-at="right">Flagged</span></div>
+      </div>
+      <div class="scene-foot"><button class="link" data-film="ipo" data-cursor="Play"><svg class="i"><use href="#i-play"/></svg>Watch the film</button><a class="link" href="https://gavira-systems.github.io/gavira-finance-demos/ipo-room/" target="_blank" rel="noopener" data-cursor="Open">Open the live desk<svg class="i"><use href="#i-out"/></svg></a></div>
+    </div>
+  </section>
+
+  <section class="scene" id="content-engine" aria-labelledby="engine-name">
+    <div class="wrap">
+      <div class="scene-top"><p class="meta">05 / Runs our own business</p><p class="plain">The engine behind GaVira's own LinkedIn and Instagram, every week. A person approves every post before it is scheduled.</p></div>
+      <div class="stage">
+        <h2 class="mega name blur-in" id="engine-name"><span class="ln">Content Engine</span></h2>
+        <div class="tool" data-thread data-at="right" style="left:2%;top:5%"><svg data-art="chart-line-up"></svg><div><b>Topic radar</b>What people are talking about this week</div></div>
+        <div class="panel" style="left:33%;top:0">
+          <h3><span>This week's post</span><span>Engine</span></h3>
+          <div class="step-row rv" data-thread data-log="Topic found and traced to its source" data-at="left"><span class="n">1</span><div><b>Topic found</b><small>A number everyone is quoting, traced to its source</small></div></div>
+          <div class="step-row rv" data-thread data-at="left"><span class="n">2</span><div><b>Hook scored</b><small>Checked against 50 opening-line formulas</small></div></div>
+        </div>
+        <div class="tool" data-thread data-at="left" style="left:74%;top:4%"><svg data-art="notebook"></svg><div><b>Brand voice</b>The rules every draft is held to</div></div>
+        <div class="panel" style="left:37%;top:60%">
+          <h3><span>Before it goes out</span><span>Engine</span></h3>
+          <div class="step-row rv" data-thread data-at="left"><span class="n">3</span><div><b>Drafted</b><small>In the brand's own voice</small></div></div>
+          <div class="step-row rv" data-thread data-at="left"><span class="n">4</span><div><b>Brand check</b><small>Four pass or fail gates</small></div></div>
+          <div class="approve rv" data-thread data-log="Post waiting for a person to approve" data-at="left"><span>Waiting for a person</span><span>Approve</span></div>
+        </div>
+        <div class="tool" data-thread data-at="left" style="left:76%;top:62%"><svg data-art="calendar-dots"></svg><div><b>Scheduled</b>Morning slot, once approved</div></div>
+        <div class="tool" data-thread data-at="left" style="left:78%;top:84%"><svg data-art="linkedin-logo"></svg><div><b>LinkedIn</b>Posted</div></div>
+        <div class="tool" data-thread data-at="right" style="left:6%;top:72%"><svg data-art="instagram-logo"></svg><div><b>Instagram</b>Posted</div></div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <section class="who dark" id="who">
+    <div class="wrap">
+      <div class="intro">
+        <div><i class="node lead" data-thread data-nobow></i><h2 class="mega h2 blur-in"><span class="ln">Any team</span><span class="ln">with a week that</span><span class="ln gold"><em>repeats itself.</em></span></h2></div>
+        <div>
+          <p class="lede">If someone on your team does the same thing every week, it can probably run on its own, with a person signing off at the end. These are the teams we build for.</p>
+          <div class="services"><span>AI automation</span><span>Lead generation</span><span>Custom AI agents</span><span>CRM and sales automation</span><span>Content systems</span><span>Team workshops</span></div>
+        </div>
+      </div>
+      <div class="verticals">
+        <div class="vertical"><i class="node" data-thread></i><h3>Finance teams</h3><p>CFO offices, controllers and shared services.</p><div class="tags"><span>Reconciliation</span><span>Close checklists</span><span>Reporting</span></div></div>
+        <div class="vertical"><i class="node" data-thread></i><h3>Lending and fintech</h3><p>Credit, collections and onboarding.</p><div class="tags"><span>Credit policy</span><span>KYC</span><span>Collections</span></div></div>
+        <div class="vertical"><i class="node" data-thread></i><h3>Brokers and advisers</h3><p>Paperwork that has to be right first time.</p><div class="tags"><span>KYC files</span><span>Document processing</span><span>Client onboarding</span></div></div>
+        <div class="vertical"><i class="node" data-thread></i><h3>E-commerce</h3><p>Orders, returns and the questions customers ask daily.</p><div class="tags"><span>Support agents</span><span>Email flows</span><span>Review requests</span></div></div>
+        <div class="vertical"><i class="node" data-thread></i><h3>Clinics and healthcare</h3><p>Bookings, reminders and front-desk questions.</p><div class="tags"><span>WhatsApp booking</span><span>Reminders</span><span>Patient follow-up</span></div></div>
+        <div class="vertical"><i class="node" data-thread></i><h3>Local services</h3><p>Trades, studios and home services.</p><div class="tags"><span>Lead capture</span><span>Booking</span><span>Reviews</span></div></div>
+        <div class="vertical"><i class="node" data-thread></i><h3>Marketing and creative agencies</h3><p>Client work that repeats every month.</p><div class="tags"><span>Client onboarding</span><span>AI reporting</span><span>Ad copy drafts</span></div></div>
+        <div class="vertical"><i class="node" data-thread></i><h3>Coaches and consultants</h3><p>Content, calls and follow-up.</p><div class="tags"><span>Content engine</span><span>DM booking</span><span>Follow-up</span></div></div>
+        <div class="vertical"><i class="node" data-thread></i><h3>Real estate</h3><p>Enquiries, site visits and investor updates.</p><div class="tags"><span>Lead qualification</span><span>Visit booking</span><span>Investor CRM</span></div></div>
+        <div class="vertical"><i class="node" data-thread></i><h3>HR and recruiting</h3><p>Shortlists without reading every CV by hand.</p><div class="tags"><span>CV screening</span><span>Candidate outreach</span><span>Scheduling</span></div></div>
+        <div class="vertical"><i class="node" data-thread></i><h3>Software companies</h3><p>Activation, support and churn.</p><div class="tags"><span>AI onboarding</span><span>Ticket triage</span><span>Churn signals</span></div></div>
+        <div class="vertical"><i class="node" data-thread></i><h3>Enterprise</h3><p>Several systems, one owner, one audit trail.</p><div class="tags"><span>Integrations</span><span>AI strategy</span><span>Team workshops</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="wrap">
+      <div class="cols">
+        <i class="node lead" data-thread data-nobow></i>
+        <h2 class="mega h2 blur-in"><span class="ln">Four steps.</span><span class="ln"><em style="color:var(--teal)">Terms in writing.</em></span></h2>
+        <div class="steps">
+          <div class="step"><span class="n"><i class="node" data-thread></i>01</span><div><h3>Audit</h3><p>We map one process end to end with the people who run it, then quote the build in writing.</p></div></div>
+          <div class="step"><span class="n"><i class="node" data-thread></i>02</span><div><h3>Build</h3><p>You see it working on your own data before anything goes live.</p></div></div>
+          <div class="step"><span class="n"><i class="node" data-thread></i>03</span><div><h3>Run together</h3><p>Thirty days side by side with your team. We fix whatever real work exposes.</p></div></div>
+          <div class="step"><span class="n"><i class="node" data-thread></i>04</span><div><h3>Hand over</h3><p>Your accounts, your logins, a written runbook. Nothing is held back.</p></div></div>
+        </div>
+        <div class="terms">
+          <div><h3>Our terms</h3><ul><li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Scope and cost agreed in writing before work starts.</li><li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Running costs named upfront.</li><li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>No open-ended retainers.</li></ul></div>
+          <div class="not"><h3>Not a fit if</h3><ul><li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg>You want a chatbot live by Friday.</li><li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg>Nobody on your side can own the process.</li><li><svg class="i" aria-hidden="true"><use href="#i-x"/></svg>You want the AI to decide things no person signs off.</li></ul></div>
+          <div class="price"><h3>Pricing</h3><p><strong>Scoped and quoted per system, in writing.</strong> Smaller teams usually start with one process. Enterprise teams get a programme: several systems, one owner, one audit trail.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap">
+      <div>
+        <i class="node lead" data-thread data-nobow></i>
+        <h2 class="mega h2 blur-in"><span class="ln">Every system</span><span class="ln">we build has</span><span class="ln"><em style="color:var(--teal)">a person in the loop.</em></span></h2>
+        <p class="lede">I'm Vidhya Ramaprasad. I was an engineer in fintech, building automation where a wrong number costs real money. That's why every system I ship shows its work, and why nothing goes out until a named person has approved it.</p>
+        <div class="who-am"><img src="img/v-about.webp" alt="Vidhya Ramaprasad, co-founder of GaVira" width="480" height="600" loading="lazy"><div><b>Vidhya Ramaprasad</b><span>Co-founder, GaVira<br>AI Automation Expert</span></div></div>
+      </div>
+      <div class="voucher" role="img" aria-label="A payment voucher, stamped approved by Vidhya Ramaprasad">
+        <div class="v-head"><span class="meta">Payment voucher</span><span>PV/26-27/0418</span></div>
+        <div class="kv"><span>Payee</span><span>Indus Petrochem</span></div>
+        <div class="kv"><span>Against</span><span>IPL/26-27/0612 · PO/26-27/0144</span></div>
+        <div class="kv"><span>Amount</span><span>₹14,16,000</span></div>
+        <div class="kv"><span>Prepared by</span><span>AP Desk, matched three ways</span></div>
+        <div class="v-sign"><i class="node" data-thread data-log="Approved: PV/26-27/0418, by V. Ramaprasad"></i><span class="meta">Approved by</span><span class="v-line"></span></div>
+        <div class="stamp-mark" aria-hidden="true"><b>Approved</b><span>V. Ramaprasad</span><span class="v-date">02 Nov 2026</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact dark" id="contact">
+    <div class="wrap finale">
+      <div>
+        <i class="node lead narrow-only" data-thread data-nobow></i>
+        <h2 class="mega blur-in"><span class="ln">Got a process</span><span class="ln">that eats</span><span class="ln gold"><em>your week?</em></span></h2>
+        <p class="lede">Ten tools, three spreadsheets, and one person who knows how it all works.</p>
+      </div>
+      <div class="note">
+        <p class="note-text">I read every message myself. Bring me the process that eats your week, and we'll see if a system can carry it.</p>
+        <div class="note-sig"><i class="node" data-thread data-log="Signed off: Vidhya Ramaprasad"></i><canvas role="img" aria-label="Vidhya's signature"></canvas></div>
+        <span class="note-name">Vidhya Ramaprasad · Co-founder, GaVira</span>
+        <div class="note-cta"><button class="book-now" type="button" data-talk data-magnet data-cursor="Book" data-thread data-at="left" data-in="right" data-log="Ready when you are">Pick a time <svg class="i"><use href="#i-out"/></svg></button><small>30 minutes on Google Meet<span class="key-hint"> · or press <kbd>T</kbd></span></small></div>
+      </div>
+    </div>
+    <div class="wrap contact-bottom">
+      <a href="#hero" class="meta">Back to the start <svg class="i" style="vertical-align:-3px"><use href="#i-up"/></svg></a>
+      <span>© 2026 GaVira · Every demo runs on a fictional company with sample data.</span>
+    </div>
+  </section>
+</main>
+
+<!-- data-booking: Vidhya's Google Calendar booking page ("30 min with Vidhya"). -->
+<dialog class="talk-dialog" id="talk" aria-labelledby="talk-title" data-booking="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1TVQ3hU8clrZQ9Z8BVMnk-Wlie2jcsKcSxs4J-msQvw5mrn2S82SYlsG76kOThkS2a8c-rKEhM">
+  <div class="talk-card">
+    <button class="close" type="button" aria-label="Close"><svg class="i"><use href="#i-x"/></svg></button>
+    <div class="talk-intro">
+      <h2 class="mega" id="talk-title">You've reached the end of the thread. <em>Or the beginning of yours.</em></h2>
+      <p class="note">Pick a time for a thirty minute call. Bring the process that eats your week.</p>
+      <canvas class="sig" role="img" aria-label="Vidhya"></canvas>
+    </div>
+    <div class="book">
+      <div class="book-frame" hidden><iframe title="Pick a time with Vidhya" loading="lazy"></iframe></div>
+      <ol class="book-steps">
+        <li><b>Pick a time</b><span>Thirty minutes on Google Meet, at a time that suits you.</span></li>
+        <li><b>Walk me through it</b><span>Who runs the process, how often, and where it hurts.</span></li>
+        <li><b>Get a straight answer</b><span>Whether a system fixes it, and what it would take.</span></li>
+      </ol>
+      <a class="book-btn" data-book href="mailto:vidhya@gavira.co.in?subject=Book%20a%20call" target="_blank" rel="noopener" data-magnet data-cursor="Book">Pick a time <svg class="i"><use href="#i-out"/></svg></a>
+      <p class="write">Rather write? <a href="mailto:vidhya@gavira.co.in">vidhya@gavira.co.in</a> <button type="button" class="copy" data-copy>Copy</button></p>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="film-dialog" id="film" aria-label="Demo film">
+  <button class="close" type="button" aria-label="Close"><svg class="i"><use href="#i-x"/></svg></button>
+  <video controls playsinline preload="none"></video>
+</dialog>
+
+<svg id="thread" aria-hidden="true"><defs><clipPath id="darkclip"></clipPath><clipPath id="lightclip"></clipPath></defs><g clip-path="url(#lightclip)"><path id="t-light" stroke="#d9a520"/></g><g clip-path="url(#darkclip)"><path id="t-dark" stroke="#ffd166"/></g><circle id="t-head" r="4.5"/></svg>
+<svg id="thread-front" aria-hidden="true"><defs><clipPath id="frontclip"></clipPath></defs><path id="t-front" stroke="#ffd166" clip-path="url(#frontclip)"/></svg>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
+<script src="art.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

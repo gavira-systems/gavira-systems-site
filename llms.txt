@@ -1,0 +1,24 @@
+# GaVira Systems
+
+> GaVira Systems is GaVira's AI automation offering for finance, operations and growth teams, led by Vidhya Ramaprasad, co-founder of GaVira and an engineer from fintech. Every system follows one rule: the AI reads, the client's written rules decide, and a named person approves anything that goes out. Every step is logged.
+
+## Live demos (sample company, sample data)
+
+- [Credit Desk](https://gavira-systems.github.io/gavira-finance-demos/credit-desk/): credit applications scored by written policy; finance controller approves up to ₹50 L, the CFO above that.
+- [GST Desk](https://gavira-systems.github.io/gavira-finance-demos/gst-desk/): purchase register matched with GSTR-2B invoice by invoice, one email per supplier, a signed input tax credit figure.
+- [AP Desk](https://gavira-systems.github.io/gavira-finance-demos/ap-desk/): supplier invoices read and three-way matched with the purchase order and goods receipt; duplicates caught; MSME payment dates tracked.
+- [IPO Room](https://gavira-systems.github.io/gavira-finance-demos/ipo-room/): DRHP data room with owners and dates, uploads checked for document, year and signature, and a weekly related-party scan.
+
+## Systems built to order
+
+Back office: document processing, reconciliation, reporting, compliance checks, onboarding.
+Front office: lead generation, AI agents on WhatsApp and the web, CRM and pipeline, content engine, retention and reviews.
+Each system names the person who signs: for example the finance controller for reconciliation, the CFO for reporting, the compliance officer for compliance checks. Every step is written to an audit log.
+
+## Who it is for
+
+Finance teams, lending and fintech, brokers and advisers, e-commerce, clinics and healthcare, local services, marketing and creative agencies, coaches and consultants, real estate, HR and recruiting, software companies, and enterprise programmes.
+
+## How engagements work
+
+Audit, build, a 30-day co-run with the client's team, then handover with the client's own accounts and a written runbook. Scope and cost are agreed in writing before work starts. No open-ended retainers. Every project is scoped and quoted per system, in writing; enterprise teams get a programme of several systems with one owner and one audit trail.
