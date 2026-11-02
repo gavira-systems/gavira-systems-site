@@ -217,8 +217,8 @@
   const target = () => {
     if (reduce) return total;
     if (!state.started) return 0;
-    if (scrollY + innerHeight * 0.55 > contactTop) return total;
-    return Math.min(total, Math.max(state.floor, lengthAt(scrollY + innerHeight * 0.66)));
+    if (scrollY + viewH * 0.55 > contactTop) return total;
+    return Math.min(total, Math.max(state.floor, lengthAt(scrollY + viewH * 0.66)));
   };
   let raf = 0;
   const bar = $('.progress i');
@@ -261,7 +261,10 @@
   let queued = false;
   const relayout = () => { if (queued) return; queued = true; requestAnimationFrame(() => { queued = false; layout(); if (hasGsap) ScrollTrigger.refresh(); }); };
   addEventListener('scroll', kick, { passive: true });
-  addEventListener('resize', relayout);
+  // A phone's address bar sliding in and out only changes the height: that is not a new layout, and
+  // re-measuring then would make the page jump mid-scroll. Only a change of width lays the page out again.
+  let viewW = docW(), viewH = innerHeight;
+  addEventListener('resize', () => { if (docW() === viewW) return; viewW = docW(); viewH = innerHeight; relayout(); });
   new ResizeObserver(relayout).observe(document.body);
   document.fonts && document.fonts.ready.then(relayout);
   addEventListener('load', relayout);

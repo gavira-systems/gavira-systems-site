@@ -72,6 +72,8 @@
   button { font: inherit; color: inherit; }
   svg.i { width: 1.05em; height: 1.05em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   section, header, footer { position: relative; }
+  /* nothing inside the page may widen it sideways (phones would pan): clip at main, not at body */
+  main { overflow-x: hidden; overflow-x: clip; }
   .wrap { position: relative; z-index: 2; padding: 0 var(--gutter); max-width: 1440px; margin: 0 auto; }
   .dark { background-color: var(--night); background-image: repeating-linear-gradient(180deg, transparent 0 33px, rgba(163,177,138,.06) 33px 34px); color: var(--cream); }
   :focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 5px; border-radius: 3px; }
