@@ -364,22 +364,17 @@
   .about .who-am img { width: 120px; height: 150px; object-fit: cover; object-position: top; border-radius: 10px; background: #e5e8dd; }
   .about .who-am b { display: block; font: 900 15px/1.2 Lato, sans-serif; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
   .about .who-am span { color: var(--ink2); font-size: 15px; }
-  /* the voucher: the thread reaches the approval line and the stamp comes down */
-  .voucher { position: relative; justify-self: center; width: min(420px, 100%); background: var(--paper); border: 1px solid #2a2c27; border-radius: 6px; padding: 22px 24px 26px; font-size: 14.5px; box-shadow: var(--lift); transform: rotate(-1.2deg); }
-  .v-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 10px; margin-bottom: 4px; border-bottom: 1.5px solid var(--onyx); }
-  .v-head .meta { color: var(--teal); }
-  .v-head span:last-child { font-weight: 700; font-variant-numeric: tabular-nums; }
-  .voucher .kv span:last-child { font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
-  .v-sign { display: flex; align-items: center; gap: 12px; margin-top: 96px; }
-  .v-sign .meta { color: var(--ink2); white-space: nowrap; }
-  .v-line { flex: 1; height: 1px; background: var(--onyx); }
-  .stamp-mark { position: absolute; right: 26px; bottom: 30px; display: grid; justify-items: center; gap: 2px; padding: 10px 16px; border: 3px solid var(--teal); outline: 1.5px solid var(--teal); outline-offset: 3px; border-radius: 6px; color: var(--teal); text-transform: uppercase; filter: url(#ink); opacity: 0; transform: rotate(-9deg) scale(1.7); pointer-events: none; }
-  .stamp-mark b { font: 900 22px/1 Lato, sans-serif; letter-spacing: .16em; }
-  .stamp-mark span { font: 900 11px/1.3 Lato, sans-serif; letter-spacing: .14em; }
-  .voucher:has(.node.lit) .stamp-mark { animation: stamp .55s cubic-bezier(.5, 0, .75, 0) .1s both; }
-  .voucher:has(.node.lit) { animation: thump .5s var(--ease) .55s both; }
-  @keyframes stamp { 0% { opacity: 0; transform: rotate(-9deg) scale(1.7); } 100% { opacity: .9; transform: rotate(-9deg) scale(1); } }
-  @keyframes thump { 0% { transform: rotate(-1.2deg); } 30% { transform: rotate(-1.2deg) translateY(3px) scale(.99); } 100% { transform: rotate(-1.2deg); } }
+  /* the person in the loop: a figure of eight the thread runs round, from the person, through the AI and back */
+  .inloop { position: relative; justify-self: center; width: min(560px, 100%); aspect-ratio: 560 / 360; }
+  .il-person { position: absolute; z-index: 3; width: 58px; height: 58px; margin: -29px 0 0 -29px; display: grid; place-items: center; border-radius: 50%; background: var(--paper); border: 1.5px solid var(--gold-deep); transition: background-color .5s, transform .5s var(--ease); }
+  .il-person svg { width: 30px; height: 30px; fill: none; stroke: var(--onyx); stroke-width: 1.4; stroke-linecap: round; }
+  .il-person.lit { background: var(--gold); transform: scale(1.08); }
+  .il-person.lit::after { content: ''; position: absolute; inset: -1.5px; border-radius: 50%; border: 1.5px solid var(--gold-deep); animation: ring 2.6s var(--ease) infinite; }
+  @keyframes ring { from { transform: scale(1); opacity: .9; } to { transform: scale(1.9); opacity: 0; } }
+  .il-label { position: absolute; z-index: 2; white-space: nowrap; font: 900 11px/1.3 Lato, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--onyx); transform: translate(-50%, 12px); transition: opacity .5s, filter .5s; }
+  .il-label.above { transform: translate(-50%, calc(-100% - 12px)); }
+  .il-out { transform: translate(calc(-100% - 14px), -50%); color: var(--gold-deep); font: 700 13.5px/1.35 Lato, sans-serif; letter-spacing: 0; text-transform: none; }
+  .js .il-label:not(.lit) { opacity: .3; filter: blur(1.5px); }
 
   /* contact: the tangle you pull */
   .contact { min-height: 100svh; padding: clamp(110px, 15vh, 160px) 0 26px; display: flex; flex-direction: column; }
@@ -459,6 +454,8 @@
     .stage > * { position: relative !important; left: auto !important; top: auto !important; transform: none; width: auto !important; max-width: 440px; }
     .stage .name { font-size: clamp(50px, 14vw, 120px); order: -1; margin: 0 0 6px -26px; white-space: normal; transform: none !important; }
     .stage .name .ln { width: auto; }
+    .il-label { white-space: normal; width: 8.5em; text-align: center; }
+    .il-out { width: 10em; text-align: right; }
     .note-sig .node { left: calc(var(--gutter) / -2 - 5.5px); }
     .node.narrow-only { display: block; }
     .stage .art, .stage .cap { display: none; }
@@ -494,7 +491,6 @@
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <filter id="ink"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4"/></filter>
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></symbol>
   <symbol id="i-out" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
@@ -782,14 +778,14 @@
         <p class="lede">I'm Vidhya Ramaprasad. I was an engineer in fintech, building automation where a wrong number costs real money. That's why every system I ship shows its work, and why nothing goes out until a named person has approved it.</p>
         <div class="who-am"><img src="img/v-about.webp" alt="Vidhya Ramaprasad, co-founder of GaVira" width="480" height="600" loading="lazy"><div><b>Vidhya Ramaprasad</b><span>Co-founder, GaVira<br>AI Automation Expert</span></div></div>
       </div>
-      <div class="voucher" role="img" aria-label="A payment voucher, stamped approved by Vidhya Ramaprasad">
-        <div class="v-head"><span class="meta">Payment voucher</span><span>PV/26-27/0418</span></div>
-        <div class="kv"><span>Payee</span><span>Indus Petrochem</span></div>
-        <div class="kv"><span>Against</span><span>IPL/26-27/0612 · PO/26-27/0144</span></div>
-        <div class="kv"><span>Amount</span><span>₹14,16,000</span></div>
-        <div class="kv"><span>Prepared by</span><span>AP Desk, matched three ways</span></div>
-        <div class="v-sign"><i class="node" data-thread></i><span class="meta">Approved by</span><span class="v-line"></span></div>
-        <div class="stamp-mark" aria-hidden="true"><b>Approved</b><span>V. Ramaprasad</span><span class="v-date">02 Nov 2026</span></div>
+      <i class="node lead narrow-only" data-thread data-nobow></i>
+      <div class="inloop" data-thread="loop" role="img" aria-label="A person in the loop: the work goes from a person to the AI, which reads it, your rules check it, it comes back to the person, and only then does it go out.">
+        <span class="il-person"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.4" r="3.7"/><path d="M4.8 20.2c.9-3.8 3.7-5.9 7.2-5.9s6.3 2.1 7.2 5.9"/></svg></span>
+        <span class="il-label below">Handed to the AI</span>
+        <span class="il-label above">The AI reads it</span>
+        <span class="il-label below">Your rules check it</span>
+        <span class="il-label above">Back to the person</span>
+        <span class="il-label il-out">Approved. Only then it goes out.</span>
       </div>
     </div>
   </section>
@@ -846,7 +842,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
-<script src="art.js?v=7"></script>
-<script src="site.js?v=7"></script>
+<script src="art.js?v=8"></script>
+<script src="site.js?v=8"></script>
 </body>
 </html>

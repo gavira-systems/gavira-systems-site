@@ -1,7 +1,7 @@
 // GaVira Systems site. It opens with the GaVira mark and the person behind it. After that one gold thread
 // does the work: it underlines the promise, runs through the four beats (lands, read, decide, sign), loops the
-// statement, ticks each system in the routing table, does each desk's work, reaches the approval line on a
-// voucher (the stamp comes down), signs Vidhya's closing note, and ends in the one button that books a call.
+// statement, ticks each system in the routing table, does each desk's work, runs the person-in-the-loop figure of
+// eight, signs Vidhya's closing note, and ends in the one button that books a call.
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -96,6 +96,24 @@
     if (kind === 'under' && !flat) {
       const r = [...el.getClientRects()].pop(), l = r.left + scrollX - 8, rt = r.right + scrollX + 12, y = r.bottom + scrollY - r.height * 0.1;
       return { a: { x: l, y }, b: { x: rt, y: y - 3 }, d: ` Q ${f((l + rt) / 2)} ${f(y + 9)}, ${f(rt)} ${f(y - 3)}`, in: RIGHT, out: RIGHT, room: 0.25 };
+    }
+    if (kind === 'loop') {
+      // The person in the loop, drawn as a figure of eight: the work leaves the person, goes round the AI's
+      // side (it reads, the rules check) and comes back to the person, and only then goes out, straight down.
+      const A = k.w * 0.4, ox = k.l + k.w * 0.46, oy = k.t + k.h * 0.5, N = 72, pts = [];
+      for (let i = 0; i <= N; i++) { const t = (i / N) * Math.PI * 2, sn = Math.sin(t), c = Math.cos(t), q = 1 + sn * sn; pts.push({ x: ox + A * c / q, y: oy + A * sn * c / q }); }
+      const R = pts[0], a = { x: R.x, y: k.t - 24 }, end = { x: R.x, y: k.b + 14 };
+      const entry = ` L ${f(R.x)} ${f(R.y)}`, d = entry + through(pts) + ` L ${f(end.x)} ${f(end.y)}`;
+      const lenIn = lengthOf(a, entry), all = lengthOf(a, d), cum = [0];
+      for (let i = 1; i <= N; i++) cum.push(cum[i - 1] + Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y));
+      const at = (i) => (lenIn + cum[i] * (all - lenIn - (end.y - R.y)) / cum[N]) / all;
+      const place = (el, x, y) => { el.style.left = f(x - k.l) + 'px'; el.style.top = f(y - k.t) + 'px'; };
+      const person = $('.il-person', el), labels = $$('.il-label', el);
+      place(person, R.x, R.y);
+      const marks = [[person, at(0) + 0.002]];
+      [6, 30, 42, 66].forEach((i, n) => { place(labels[n], pts[i].x, pts[i].y); marks.push([labels[n], at(i)]); });
+      place(labels[4], end.x, end.y + 6); marks.push([labels[4], 0.995]);
+      return { a, b: end, d, in: DOWN, out: DOWN, room: 0.12, marks };
     }
     if (kind === 'frame' && !flat) {
       // A loose loop drawn round the statement by hand: a soft rounded oval, a little more than once round.
@@ -364,8 +382,6 @@
   });
 
   // ---------- small things ----------
-  // the approval stamp carries the day you are reading it
-  $$('.v-date').forEach((el) => { el.textContent = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }); });
   const toast = $('.toast'), brandMenu = $('.brand-menu');
   const say = (msg) => { toast.textContent = msg; toast.classList.add('show'); clearTimeout(say.t); say.t = setTimeout(() => toast.classList.remove('show'), 1800); };
   $$('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
