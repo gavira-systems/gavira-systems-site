@@ -65,7 +65,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; scrollbar-color: var(--sage) var(--cream); }
-  body { position: relative; background: var(--cream) repeating-linear-gradient(180deg, transparent 0 33px, rgba(0,109,119,.07) 33px 34px); color: var(--onyx); font: 400 17px/1.55 Lato, system-ui, sans-serif; overflow-x: clip; -webkit-font-smoothing: antialiased; caret-color: var(--gold-deep); }
+  body { position: relative; background: var(--cream) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='34'%3E%3Crect y='33' width='8' height='1' fill='%23006d77' fill-opacity='.07'/%3E%3C/svg%3E"); color: var(--onyx); font: 400 17px/1.55 Lato, system-ui, sans-serif; overflow-x: clip; -webkit-font-smoothing: antialiased; caret-color: var(--gold-deep); }
   ::selection { background: var(--gold); color: var(--onyx); }
   img { display: block; max-width: 100%; }
   a { color: inherit; text-underline-offset: .2em; }
@@ -75,7 +75,7 @@
   /* nothing inside the page may widen it sideways (phones would pan): clip at main, not at body */
   main { overflow-x: hidden; overflow-x: clip; }
   .wrap { position: relative; z-index: 2; padding: 0 var(--gutter); max-width: 1440px; margin: 0 auto; }
-  .dark { background-color: var(--night); background-image: repeating-linear-gradient(180deg, transparent 0 33px, rgba(163,177,138,.06) 33px 34px); color: var(--cream); }
+  .dark { background-color: var(--night); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='34'%3E%3Crect y='33' width='8' height='1' fill='%23a3b18a' fill-opacity='.06'/%3E%3C/svg%3E"); color: var(--cream); }
   :focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 5px; border-radius: 3px; }
   .dark :focus-visible { outline-color: var(--gold); }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
@@ -103,8 +103,7 @@
 
   /* the thread */
   #thread { position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none; overflow: visible; }
-  #thread path, #thread-front path { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-  #thread-front { position: absolute; top: 0; left: 0; z-index: 3; pointer-events: none; overflow: visible; }
+  #thread path { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   #t-head { fill: var(--gold-deep); opacity: 0; transition: opacity .2s; }
   #t-head.on { opacity: 1; }
   #t-head.on-dark { fill: var(--gold); }
@@ -176,24 +175,6 @@
   /* cards lean toward the pointer */
   .stage .card, .stage .tool, .stage .panel { transition: transform .5s var(--ease), box-shadow .5s var(--ease); will-change: transform; }
   #t-head { filter: drop-shadow(0 0 6px rgba(255,209,102,.9)); }
-
-  /* the audit log, written as the thread works */
-  .log { position: fixed; left: 16px; bottom: 16px; z-index: 40; width: min(380px, calc(100vw - 32px)); color: #e8efed; font-size: 13px; line-height: 1.4; opacity: 0; transform: translateY(12px); transition: opacity .35s, transform .45s var(--ease); pointer-events: none; }
-  .log.on { opacity: 1; transform: none; pointer-events: auto; }
-  .log-tab { display: inline-flex; align-items: center; gap: 9px; padding: 9px 13px; border: 1px solid #2d4c4f; border-radius: 999px; background: rgba(9,30,33,.94); color: #e8efed; font: 900 11px/1 Lato, sans-serif; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; }
-  .log-tab i { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
-  .log.fresh .log-tab i { animation: blink 1s steps(2, start) infinite; }
-  @keyframes blink { to { opacity: .2; } }
-  .log-tab b { color: var(--gold); font-variant-numeric: tabular-nums; }
-  .log-list { list-style: none; margin: 0 0 8px; padding: 0; display: grid; gap: 4px; max-height: 0; overflow: hidden; order: -1; }
-  .log { display: flex; flex-direction: column; align-items: flex-start; }
-  .log-list li { display: grid; grid-template-columns: auto 1fr; gap: 10px; padding: 7px 12px; border-radius: 8px; background: rgba(9,30,33,.94); border: 1px solid #2d4c4f; animation: entry .45s var(--ease) both; }
-  .log-list time { color: var(--gold); font-weight: 700; font-variant-numeric: tabular-nums; }
-  @keyframes entry { from { opacity: 0; transform: translateY(8px); } }
-  .log.fresh .log-list { max-height: 140px; }
-  .log.fresh:not(.open) .log-list li:nth-last-child(n+3) { display: none; }
-  .log.open .log-list { max-height: min(55vh, 460px); overflow-y: auto; overscroll-behavior: contain; }
-  @media (max-width: 700px) { .log { left: 10px; bottom: 10px; } .log.fresh:not(.open) .log-list li:nth-last-child(n+2) { display: none; } }
 
   /* custom cursor */
   .cursor { position: fixed; left: 0; top: 0; z-index: 60; width: 76px; height: 76px; margin: -38px 0 0 -38px; pointer-events: none; display: grid; place-items: center; transition: opacity .25s; will-change: transform; opacity: 0; }
@@ -543,7 +524,6 @@
 <div class="brand-menu" role="menu" aria-label="GaVira Systems"><button role="menuitem" data-copy>Copy email address</button><button role="menuitem" data-talk>Start a conversation</button><a role="menuitem" href="#hero">Back to the start</a></div>
 <div class="toast" role="status" aria-live="polite"></div>
 <div class="cursor" aria-hidden="true"><span></span></div>
-<aside class="log" aria-label="Audit log of this visit"><button class="log-tab" type="button" aria-expanded="false"><i aria-hidden="true"></i><span>Audit log</span><b>0</b></button><ol class="log-list" aria-live="polite"></ol></aside>
 
 <main>
   <section class="hero dark" id="hero">
@@ -576,10 +556,10 @@
         <p class="lede">Invoices, statements, forms, emails. Every system we build does the same three things with them, in this order.</p>
       </div>
       <ol class="beats">
-        <li class="beat"><svg class="art" data-art="envelope-simple" data-thread data-log="Received: invoice IPL/26-27/0612, Indus Petrochem"></svg><p class="label"><b class="meta">Lands</b>An invoice, a statement, a form, an email.</p></li>
-        <li class="beat"><svg class="art" data-art="scan" data-thread data-log="Read: 3 fields, each tied to page 1"></svg><p class="label"><b class="meta">Read</b>The AI reads it, and keeps the page each figure came from.</p></li>
-        <li class="beat"><svg class="art" data-art="scales" data-thread data-log="Checked against your AP policy: clear"></svg><p class="label"><b class="meta">Decide</b>Your written rules decide what is clear and what is held.</p></li>
-        <li class="beat"><svg class="art" data-art="pen-nib" data-thread data-log="Held for sign-off by the AP lead"></svg><p class="label"><b class="meta">Sign</b>A named person approves before anything goes out.</p></li>
+        <li class="beat"><svg class="art" data-art="envelope-simple" data-thread></svg><p class="label"><b class="meta">Lands</b>An invoice, a statement, a form, an email.</p></li>
+        <li class="beat"><svg class="art" data-art="scan" data-thread></svg><p class="label"><b class="meta">Read</b>The AI reads it, and keeps the page each figure came from.</p></li>
+        <li class="beat"><svg class="art" data-art="scales" data-thread></svg><p class="label"><b class="meta">Decide</b>Your written rules decide what is clear and what is held.</p></li>
+        <li class="beat"><svg class="art" data-art="pen-nib" data-thread></svg><p class="label"><b class="meta">Sign</b>A named person approves before anything goes out.</p></li>
       </ol>
     </div>
   </section>
@@ -598,17 +578,17 @@
         <div class="routes" role="table" aria-label="The ten systems we build">
           <div class="route route-head" role="row"><i></i><span role="columnheader">System</span><span role="columnheader">What comes in</span><span role="columnheader">What it checks</span><span role="columnheader">Who signs</span></div>
           <p class="route-group meta gold">Back office</p>
-          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Document processing, signed by the operations lead"></i><b role="rowheader">Document processing</b><span role="cell" data-k="In">Invoices, statements, KYC files, CVs</span><span role="cell" data-k="Checks">Every figure against the page it came from</span><span role="cell" data-k="Signs"><em>Operations lead</em></span></div>
-          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Reconciliation, signed by the finance controller"></i><b role="rowheader">Reconciliation</b><span role="cell" data-k="In">Your books, bank feeds, the tax portal</span><span role="cell" data-k="Checks">Each line matched, each difference explained</span><span role="cell" data-k="Signs"><em>Finance controller</em></span></div>
-          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Reporting, signed by the CFO"></i><b role="rowheader">Reporting</b><span role="cell" data-k="In">The week's numbers from your systems</span><span role="cell" data-k="Checks">Totals tie back to the books</span><span role="cell" data-k="Signs"><em>CFO</em></span></div>
-          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Compliance checks, signed by the compliance officer"></i><b role="rowheader">Compliance checks</b><span role="cell" data-k="In">KYC files, approvals, limits</span><span role="cell" data-k="Checks">Your policy and who may approve what</span><span role="cell" data-k="Signs"><em>Compliance officer</em></span></div>
-          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Onboarding, signed by the account owner"></i><b role="rowheader">Onboarding</b><span role="cell" data-k="In">A signed contract</span><span role="cell" data-k="Checks">Invoice, intake and kickoff, in order</span><span role="cell" data-k="Signs"><em>Account owner</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread></i><b role="rowheader">Document processing</b><span role="cell" data-k="In">Invoices, statements, KYC files, CVs</span><span role="cell" data-k="Checks">Every figure against the page it came from</span><span role="cell" data-k="Signs"><em>Operations lead</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread></i><b role="rowheader">Reconciliation</b><span role="cell" data-k="In">Your books, bank feeds, the tax portal</span><span role="cell" data-k="Checks">Each line matched, each difference explained</span><span role="cell" data-k="Signs"><em>Finance controller</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread></i><b role="rowheader">Reporting</b><span role="cell" data-k="In">The week's numbers from your systems</span><span role="cell" data-k="Checks">Totals tie back to the books</span><span role="cell" data-k="Signs"><em>CFO</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread></i><b role="rowheader">Compliance checks</b><span role="cell" data-k="In">KYC files, approvals, limits</span><span role="cell" data-k="Checks">Your policy and who may approve what</span><span role="cell" data-k="Signs"><em>Compliance officer</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread></i><b role="rowheader">Onboarding</b><span role="cell" data-k="In">A signed contract</span><span role="cell" data-k="Checks">Invoice, intake and kickoff, in order</span><span role="cell" data-k="Signs"><em>Account owner</em></span></div>
           <p class="route-group meta gold">Front office</p>
-          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Lead generation, signed by the sales lead"></i><b role="rowheader">Lead generation</b><span role="cell" data-k="In">Your ideal customer, written down</span><span role="cell" data-k="Checks">Fit, source and contact details</span><span role="cell" data-k="Signs"><em>Sales lead</em></span></div>
-          <div class="route" role="row"><i class="node" data-thread data-log="Routed: AI agents, signed by the support lead"></i><b role="rowheader">AI agents</b><span role="cell" data-k="In">Questions on WhatsApp and the web</span><span role="cell" data-k="Checks">Answers come only from your documents</span><span role="cell" data-k="Signs"><em>Support lead</em></span></div>
-          <div class="route" role="row"><i class="node" data-thread data-log="Routed: CRM and pipeline, signed by the sales manager"></i><b role="rowheader">CRM and pipeline</b><span role="cell" data-k="In">Deals, limits and follow-ups</span><span role="cell" data-k="Checks">Who owns what, and what is overdue</span><span role="cell" data-k="Signs"><em>Sales manager</em></span></div>
-          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Content engine, signed by the founder"></i><b role="rowheader">Content engine</b><span role="cell" data-k="In">What people are talking about this week</span><span role="cell" data-k="Checks">Hook, voice and four brand gates</span><span role="cell" data-k="Signs"><em>Founder</em></span></div>
-          <div class="route" role="row"><i class="node" data-thread data-log="Routed: Retention and reviews, signed by the customer success"></i><b role="rowheader">Retention and reviews</b><span role="cell" data-k="In">Customer activity</span><span role="cell" data-k="Checks">Early signs a customer is drifting</span><span role="cell" data-k="Signs"><em>Customer success</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread></i><b role="rowheader">Lead generation</b><span role="cell" data-k="In">Your ideal customer, written down</span><span role="cell" data-k="Checks">Fit, source and contact details</span><span role="cell" data-k="Signs"><em>Sales lead</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread></i><b role="rowheader">AI agents</b><span role="cell" data-k="In">Questions on WhatsApp and the web</span><span role="cell" data-k="Checks">Answers come only from your documents</span><span role="cell" data-k="Signs"><em>Support lead</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread></i><b role="rowheader">CRM and pipeline</b><span role="cell" data-k="In">Deals, limits and follow-ups</span><span role="cell" data-k="Checks">Who owns what, and what is overdue</span><span role="cell" data-k="Signs"><em>Sales manager</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread></i><b role="rowheader">Content engine</b><span role="cell" data-k="In">What people are talking about this week</span><span role="cell" data-k="Checks">Hook, voice and four brand gates</span><span role="cell" data-k="Signs"><em>Founder</em></span></div>
+          <div class="route" role="row"><i class="node" data-thread></i><b role="rowheader">Retention and reviews</b><span role="cell" data-k="In">Customer activity</span><span role="cell" data-k="Checks">Early signs a customer is drifting</span><span role="cell" data-k="Signs"><em>Customer success</em></span></div>
         </div>
         <p class="route-rule">Ten systems, one rule: <em>the AI reads, your rules decide, a person signs.</em></p>
       </div>
@@ -622,13 +602,13 @@
       <div class="stage">
         <h2 class="mega name blur-in" id="credit-name"><span class="ln">Credit Desk</span></h2>
         <svg class="art" data-cap="The customer" data-art="warehouse" data-thread style="left:0;top:4%"></svg>
-        <div class="card" data-thread data-log="Credit application read: Kaveri Agro Distributors" data-at="left" style="left:16%;top:0"><h3>Application</h3><b>Kaveri Agro Distributors</b><div class="kv"><span>Turnover</span><span>₹14.20 Cr</span></div><div class="kv"><span>Current limit</span><span>₹40.0 L</span></div></div>
+        <div class="card" data-thread data-at="left" style="left:16%;top:0"><h3>Application</h3><b>Kaveri Agro Distributors</b><div class="kv"><span>Turnover</span><span>₹14.20 Cr</span></div><div class="kv"><span>Current limit</span><span>₹40.0 L</span></div></div>
         <svg class="art" data-cap="Limit check" data-art="gauge" data-thread style="left:42%;top:2%"></svg>
-        <div class="card" style="left:59%;top:6%"><h3>Approval matrix</h3><div class="kv"><span>Up to ₹50 L</span><span>Finance controller</span></div><div class="kv"><span>Above ₹50 L</span><span>CFO</span></div><span class="stamp rv" data-thread data-log="Limit above ₹50 L: routed to the CFO" data-at="left">Routed to the CFO</span></div>
+        <div class="card" style="left:59%;top:6%"><h3>Approval matrix</h3><div class="kv"><span>Up to ₹50 L</span><span>Finance controller</span></div><div class="kv"><span>Above ₹50 L</span><span>CFO</span></div><span class="stamp rv" data-thread data-at="left">Routed to the CFO</span></div>
         <svg class="art" data-cap="Order release" data-art="truck" data-thread style="left:84%;top:4%"></svg>
-        <div class="card" style="left:66%;top:64%"><h3>Order release</h3><b class="no rv" data-thread data-log="Order held: customer over limit" data-at="right">Held: customer over limit</b><div class="kv"><span>Reason</span><span>On record</span></div></div>
+        <div class="card" style="left:66%;top:64%"><h3>Order release</h3><b class="no rv" data-thread data-at="right">Held: customer over limit</b><div class="kv"><span>Reason</span><span>On record</span></div></div>
         <svg class="art" data-cap="Approval on record" data-art="stamp" data-thread style="left:43%;top:66%"></svg>
-        <div class="card" style="left:6%;top:62%"><h3>Owed to us <span>sample</span></h3><div class="big rv" data-thread data-log="Owed to us totalled: ₹2.92 Cr" data-at="right" data-count="2.92" data-pre="₹" data-post=" Cr" data-dp="2">₹2.92 Cr</div><div class="kv"><span>Overdue</span><span class="rv" data-thread data-at="right">₹1.04 Cr</span></div><div class="kv"><span>Days to collect</span><span>52 days</span></div></div>
+        <div class="card" style="left:6%;top:62%"><h3>Owed to us <span>sample</span></h3><div class="big rv" data-thread data-at="right" data-count="2.92" data-pre="₹" data-post=" Cr" data-dp="2">₹2.92 Cr</div><div class="kv"><span>Overdue</span><span class="rv" data-thread data-at="right">₹1.04 Cr</span></div><div class="kv"><span>Days to collect</span><span>52 days</span></div></div>
       </div>
       <div class="scene-foot"><button class="link" data-film="credit" data-cursor="Play"><svg class="i"><use href="#i-play"/></svg>Watch the film</button><a class="link" href="https://gavira-systems.github.io/gavira-finance-demos/credit-desk/" target="_blank" rel="noopener" data-cursor="Open">Open the live desk<svg class="i"><use href="#i-out"/></svg></a></div>
     </div>
@@ -647,10 +627,10 @@
           <div class="row bad" data-pair="4"><span>IPL/26-27/0426</span><span>Booked</span></div>
         </div>
         <div class="verdicts" style="left:42%;top:3%">
-          <span class="pill ok rv" data-thread data-log="Matched with GSTR-2B: IPL/26-27/0414" data-at="left" data-also="[data-pair='1']"><svg class="i"><use href="#i-check"/></svg>Format only</span>
-          <span class="pill no rv" data-thread data-log="Mismatch: KMB-0436 amount differs" data-at="left" data-also="[data-pair='2']"><svg class="i"><use href="#i-alert"/></svg>Amount differs</span>
+          <span class="pill ok rv" data-thread data-at="left" data-also="[data-pair='1']"><svg class="i"><use href="#i-check"/></svg>Format only</span>
+          <span class="pill no rv" data-thread data-at="left" data-also="[data-pair='2']"><svg class="i"><use href="#i-alert"/></svg>Amount differs</span>
           <span class="pill no rv" data-thread data-at="left" data-also="[data-pair='3']"><svg class="i"><use href="#i-x"/></svg>Not filed</span>
-          <span class="pill no rv" data-thread data-log="Mismatch: IPL/26-27/0426 wrong GSTIN" data-at="left" data-also="[data-pair='4']"><svg class="i"><use href="#i-alert"/></svg>Wrong GSTIN</span>
+          <span class="pill no rv" data-thread data-at="left" data-also="[data-pair='4']"><svg class="i"><use href="#i-alert"/></svg>Wrong GSTIN</span>
         </div>
         <div class="card" style="left:57%;top:0;width:clamp(240px,25vw,340px)"><h3>Tax portal · GSTR-2B</h3>
           <div class="row good" data-pair="1"><span>IPL/2627/414</span><span>Same invoice</span></div>
@@ -659,9 +639,9 @@
           <div class="row bad" data-pair="4"><span>IPL/26-27/0426</span><span>Other state</span></div>
         </div>
         <svg class="art" data-cap="Tax portal" data-art="bank" data-thread style="left:86%;top:2%"></svg>
-        <div class="card" data-thread data-at="left" style="left:63%;top:63%"><h3>Supplier follow-up</h3><b>One email per supplier</b><div class="kv"><span>Drafted</span><span>3</span></div><span class="stamp rv" data-thread data-log="3 supplier emails drafted, waiting for sign-off" data-at="left">Waiting for sign-off</span></div>
+        <div class="card" data-thread data-at="left" style="left:63%;top:63%"><h3>Supplier follow-up</h3><b>One email per supplier</b><div class="kv"><span>Drafted</span><span>3</span></div><span class="stamp rv" data-thread data-at="left">Waiting for sign-off</span></div>
         <svg class="art" data-cap="Supplier email" data-art="envelope-simple" data-thread style="left:43%;top:66%"></svg>
-        <div class="card" style="left:6%;top:63%"><h3>Tax credit you can claim</h3><div class="big rv" data-thread data-log="Tax credit you can claim: ₹13.85 L" data-at="right" data-count="13.85" data-pre="₹" data-post=" L" data-dp="2">₹13.85 L</div><div class="kv"><span>Held until suppliers fix</span><span>₹2.34 L</span></div></div>
+        <div class="card" style="left:6%;top:63%"><h3>Tax credit you can claim</h3><div class="big rv" data-thread data-at="right" data-count="13.85" data-pre="₹" data-post=" L" data-dp="2">₹13.85 L</div><div class="kv"><span>Held until suppliers fix</span><span>₹2.34 L</span></div></div>
       </div>
       <div class="scene-foot"><button class="link" data-film="gst" data-cursor="Play"><svg class="i"><use href="#i-play"/></svg>Watch the film</button><a class="link" href="https://gavira-systems.github.io/gavira-finance-demos/gst-desk/" target="_blank" rel="noopener" data-cursor="Open">Open the live desk<svg class="i"><use href="#i-out"/></svg></a></div>
     </div>
@@ -673,7 +653,7 @@
       <div class="stage">
         <h2 class="mega name blur-in" id="ap-name"><span class="ln">AP Desk</span></h2>
         <svg class="art" data-cap="Goods received" data-art="package" data-thread style="left:0;top:6%"></svg>
-        <div class="card invoice rv" data-thread data-log="Invoice read: IPL/26-27/0612" data-at="left" style="left:16%;top:0;width:clamp(250px,24vw,330px)"><div class="stack-under"><i></i><i></i><i></i></div><div class="scan-box"><i class="scan"></i></div>
+        <div class="card invoice rv" data-thread data-at="left" style="left:16%;top:0;width:clamp(250px,24vw,330px)"><div class="stack-under"><i></i><i></i><i></i></div><div class="scan-box"><i class="scan"></i></div>
           <h3>Tax invoice <span>Indus Petrochem</span></h3>
           <div class="kv"><span>Invoice no.</span><span class="field">IPL/26-27/0612</span></div>
           <div class="kv"><span>Purchase order</span><span class="field">PO/26-27/0144</span></div>
@@ -683,7 +663,7 @@
           <div class="kv"><span>Purchase order</span><span class="ok rv" data-thread data-at="right"><svg class="i"><use href="#i-check"/></svg>Matches</span></div>
           <div class="kv"><span>Goods received</span><span class="ok rv" data-thread data-at="right"><svg class="i"><use href="#i-check"/></svg>12,000 kg</span></div>
           <div class="kv"><span>Paid before?</span><span class="ok rv" data-thread data-at="right"><svg class="i"><use href="#i-check"/></svg>No</span></div>
-          <span class="stamp rv" data-thread data-log="Three-way match passed: ready to post" data-at="left">Ready to post</span>
+          <span class="stamp rv" data-thread data-at="left">Ready to post</span>
         </div>
         <svg class="art" data-cap="Purchase order" data-art="files" data-thread style="left:84%;top:6%"></svg>
         <div class="card" style="left:66%;top:62%"><h3>October · 13 invoices</h3>
@@ -693,7 +673,7 @@
           <div class="kv"><span>Couldn't read</span><span class="rv" data-thread data-at="right" data-count="1">1</span></div>
         </div>
         <svg class="art" data-cap="Supplier bill" data-art="receipt" data-thread style="left:44%;top:68%"></svg>
-        <div class="card" style="left:8%;top:64%"><h3>Tax invoice <span>Konark Masterbatches</span></h3><b>KMB-0471</b><div class="kv"><span>Already paid as</span><span>KMB-0417</span></div><span class="stamp no rv" data-thread data-log="Duplicate caught: KMB-0471 already paid as KMB-0417" data-at="right">Duplicate</span></div>
+        <div class="card" style="left:8%;top:64%"><h3>Tax invoice <span>Konark Masterbatches</span></h3><b>KMB-0471</b><div class="kv"><span>Already paid as</span><span>KMB-0417</span></div><span class="stamp no rv" data-thread data-at="right">Duplicate</span></div>
       </div>
       <div class="scene-foot"><button class="link" data-film="ap" data-cursor="Play"><svg class="i"><use href="#i-play"/></svg>Watch the film</button><a class="link" href="https://gavira-systems.github.io/gavira-finance-demos/ap-desk/" target="_blank" rel="noopener" data-cursor="Open">Open the live desk<svg class="i"><use href="#i-out"/></svg></a></div>
     </div>
@@ -710,13 +690,13 @@
           <div class="kv"><span>Memorandum and articles</span><span class="ok rv" data-thread data-at="right"><svg class="i"><use href="#i-check"/></svg></span></div>
           <div class="kv"><span>Board minutes, three years</span><span class="ok rv" data-thread data-at="right"><svg class="i"><use href="#i-check"/></svg></span></div>
           <div class="kv"><span>Statutory registers</span><span class="ok rv" data-thread data-at="right"><svg class="i"><use href="#i-check"/></svg></span></div>
-          <div class="kv"><span>Audited financials FY 2025-26</span><span class="no rv" data-thread data-log="Upload sent back: FY 2025-26 financials not signed" data-at="right"><svg class="i"><use href="#i-x"/></svg>Not signed</span></div>
+          <div class="kv"><span>Audited financials FY 2025-26</span><span class="no rv" data-thread data-at="right"><svg class="i"><use href="#i-x"/></svg>Not signed</span></div>
         </div>
         <svg class="art" data-cap="Data room" data-art="folders" data-thread style="left:53%;top:2%"></svg>
-        <div class="card" style="left:72%;top:4%"><h3>Accepted so far</h3><div class="big rv" data-thread data-log="Data room: 36% accepted" data-at="left" data-count="36" data-post="%">36%</div><div class="kv"><span>Overdue</span><span>6</span></div><div class="kv"><span>Sent back</span><span>3</span></div></div>
+        <div class="card" style="left:72%;top:4%"><h3>Accepted so far</h3><div class="big rv" data-thread data-at="left" data-count="36" data-post="%">36%</div><div class="kv"><span>Overdue</span><span>6</span></div><div class="kv"><span>Sent back</span><span>3</span></div></div>
         <div class="card" style="left:74%;top:66%"><h3>Who decides</h3><b>The company secretary</b><div class="kv"><span>Accepts their own upload?</span><span>Never</span></div></div>
         <svg class="art" data-cap="Related parties" data-art="scales" data-thread style="left:54%;top:64%"></svg>
-        <div class="card" style="left:8%;top:64%"><h3>Weekly related-party scan</h3><b>Flags go to the company secretary</b><span class="stamp no rv" data-thread data-log="Related-party scan: 1 flag for the company secretary" data-at="right">Flagged</span></div>
+        <div class="card" style="left:8%;top:64%"><h3>Weekly related-party scan</h3><b>Flags go to the company secretary</b><span class="stamp no rv" data-thread data-at="right">Flagged</span></div>
       </div>
       <div class="scene-foot"><button class="link" data-film="ipo" data-cursor="Play"><svg class="i"><use href="#i-play"/></svg>Watch the film</button><a class="link" href="https://gavira-systems.github.io/gavira-finance-demos/ipo-room/" target="_blank" rel="noopener" data-cursor="Open">Open the live desk<svg class="i"><use href="#i-out"/></svg></a></div>
     </div>
@@ -730,7 +710,7 @@
         <div class="tool" data-thread data-at="right" style="left:2%;top:5%"><svg data-art="chart-line-up"></svg><div><b>Topic radar</b>What people are talking about this week</div></div>
         <div class="panel" style="left:33%;top:0">
           <h3><span>This week's post</span><span>Engine</span></h3>
-          <div class="step-row rv" data-thread data-log="Topic found and traced to its source" data-at="left"><span class="n">1</span><div><b>Topic found</b><small>A number everyone is quoting, traced to its source</small></div></div>
+          <div class="step-row rv" data-thread data-at="left"><span class="n">1</span><div><b>Topic found</b><small>A number everyone is quoting, traced to its source</small></div></div>
           <div class="step-row rv" data-thread data-at="left"><span class="n">2</span><div><b>Hook scored</b><small>Checked against 50 opening-line formulas</small></div></div>
         </div>
         <div class="tool" data-thread data-at="left" style="left:74%;top:4%"><svg data-art="notebook"></svg><div><b>Brand voice</b>The rules every draft is held to</div></div>
@@ -738,7 +718,7 @@
           <h3><span>Before it goes out</span><span>Engine</span></h3>
           <div class="step-row rv" data-thread data-at="left"><span class="n">3</span><div><b>Drafted</b><small>In the brand's own voice</small></div></div>
           <div class="step-row rv" data-thread data-at="left"><span class="n">4</span><div><b>Brand check</b><small>Four pass or fail gates</small></div></div>
-          <div class="approve rv" data-thread data-log="Post waiting for a person to approve" data-at="left"><span>Waiting for a person</span><span>Approve</span></div>
+          <div class="approve rv" data-thread data-at="left"><span>Waiting for a person</span><span>Approve</span></div>
         </div>
         <div class="tool" data-thread data-at="left" style="left:76%;top:62%"><svg data-art="calendar-dots"></svg><div><b>Scheduled</b>Morning slot, once approved</div></div>
         <div class="tool" data-thread data-at="left" style="left:78%;top:84%"><svg data-art="linkedin-logo"></svg><div><b>LinkedIn</b>Posted</div></div>
@@ -808,7 +788,7 @@
         <div class="kv"><span>Against</span><span>IPL/26-27/0612 · PO/26-27/0144</span></div>
         <div class="kv"><span>Amount</span><span>₹14,16,000</span></div>
         <div class="kv"><span>Prepared by</span><span>AP Desk, matched three ways</span></div>
-        <div class="v-sign"><i class="node" data-thread data-log="Approved: PV/26-27/0418, by V. Ramaprasad"></i><span class="meta">Approved by</span><span class="v-line"></span></div>
+        <div class="v-sign"><i class="node" data-thread></i><span class="meta">Approved by</span><span class="v-line"></span></div>
         <div class="stamp-mark" aria-hidden="true"><b>Approved</b><span>V. Ramaprasad</span><span class="v-date">02 Nov 2026</span></div>
       </div>
     </div>
@@ -823,9 +803,9 @@
       </div>
       <div class="note">
         <p class="note-text">I read every message myself. Bring me the process that eats your week, and we'll see if a system can carry it.</p>
-        <div class="note-sig"><i class="node" data-thread data-log="Signed off: Vidhya Ramaprasad"></i><canvas role="img" aria-label="Vidhya's signature"></canvas></div>
+        <div class="note-sig"><i class="node" data-thread></i><canvas role="img" aria-label="Vidhya's signature"></canvas></div>
         <span class="note-name">Vidhya Ramaprasad · Co-founder, GaVira</span>
-        <div class="note-cta"><button class="book-now" type="button" data-talk data-magnet data-cursor="Book" data-thread data-at="left" data-in="right" data-log="Ready when you are">Pick a time <svg class="i"><use href="#i-out"/></svg></button><small>30 minutes on Google Meet<span class="key-hint"> · or press <kbd>T</kbd></span></small></div>
+        <div class="note-cta"><button class="book-now" type="button" data-talk data-magnet data-cursor="Book" data-thread data-at="left" data-in="right">Pick a time <svg class="i"><use href="#i-out"/></svg></button><small>30 minutes on Google Meet<span class="key-hint"> · or press <kbd>T</kbd></span></small></div>
       </div>
     </div>
     <div class="wrap contact-bottom">
@@ -862,12 +842,11 @@
   <video controls playsinline preload="none"></video>
 </dialog>
 
-<svg id="thread" aria-hidden="true"><defs><clipPath id="darkclip"></clipPath><clipPath id="lightclip"></clipPath></defs><g clip-path="url(#lightclip)"><path id="t-light" stroke="#d9a520"/></g><g clip-path="url(#darkclip)"><path id="t-dark" stroke="#ffd166"/></g><circle id="t-head" r="4.5"/></svg>
-<svg id="thread-front" aria-hidden="true"><defs><clipPath id="frontclip"></clipPath></defs><path id="t-front" stroke="#ffd166" clip-path="url(#frontclip)"/></svg>
+<svg id="thread" aria-hidden="true"><defs><linearGradient id="t-ink" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1"></linearGradient></defs><g id="t-pieces" stroke="url(#t-ink)"></g><circle id="t-head" r="4.5"/></svg>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
-<script src="art.js?v=6"></script>
-<script src="site.js?v=6"></script>
+<script src="art.js?v=7"></script>
+<script src="site.js?v=7"></script>
 </body>
 </html>

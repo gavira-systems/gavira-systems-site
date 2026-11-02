@@ -1,8 +1,7 @@
-// GaVira Systems site. It opens with the GaVira mark and the person behind it. After that one gold thread is
-// the audit log: it underlines the promise, runs through the four beats (lands, read, decide, sign), loops the
-// statement, ticks each system in the routing table, does each desk's work, writing a time-stamped entry at
-// every step, reaches the approval line on a voucher (the stamp comes down), signs Vidhya's closing note, and
-// ends in the one button that books a call.
+// GaVira Systems site. It opens with the GaVira mark and the person behind it. After that one gold thread
+// does the work: it underlines the promise, runs through the four beats (lands, read, decide, sign), loops the
+// statement, ticks each system in the routing table, does each desk's work, reaches the approval line on a
+// voucher (the stamp comes down), signs Vidhya's closing note, and ends in the one button that books a call.
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -26,23 +25,6 @@
   }
   // (drawings are SVG, which has no offsetTop, so measure against the stage)
   const placeCaptions = () => { for (const svg of $$('svg[data-art]')) if (svg._cap) { const st = svg.parentNode.getBoundingClientRect(), r = svg.getBoundingClientRect(); svg._cap.style.left = f(r.left - st.left + r.width * 0.08) + 'px'; svg._cap.style.top = f(r.bottom - st.top - r.height * 0.06) + 'px'; } };
-
-  // ---------- the audit log: the thread writes an entry, with the visitor's own clock time, at each step ----------
-  const logEl = $('.log'), logList = $('.log-list', logEl), logCount = $('.log-tab b', logEl), logTab = $('.log-tab', logEl);
-  let logN = 0, logIdle = 0;
-  const logged = new WeakSet();
-  function logEntry(text) {
-    const li = document.createElement('li'), t = document.createElement('time'), x = document.createElement('span');
-    t.textContent = new Date().toLocaleTimeString('en-GB', { hour12: false }); x.textContent = text;
-    li.append(t, x); logList.append(li); logCount.textContent = ++logN;
-    logEl.classList.add('on', 'fresh'); logList.scrollTop = logList.scrollHeight;
-    clearTimeout(logIdle); logIdle = setTimeout(() => logEl.classList.remove('fresh'), 3800);
-  }
-  // at the very bottom the log steps up, so it never sits on the footer links
-  const footRow = $('.contact-bottom');
-  const liftLog = () => { const over = innerHeight - footRow.getBoundingClientRect().top; logEl.style.translate = over > 0 ? `0 ${f(-over - 6)}px` : ''; };
-  addEventListener('scroll', liftLog, { passive: true }); addEventListener('resize', liftLog);
-  logTab.addEventListener('click', () => { const open = !logEl.classList.contains('open'); logEl.classList.toggle('open', open); logTab.setAttribute('aria-expanded', open); if (open) logList.scrollTop = logList.scrollHeight; });
 
   // A smooth curve through points (Catmull-Rom as cubic Béziers), continuing an open path.
   function through(pts) {
@@ -89,8 +71,7 @@
   }
 
   // ---------- the thread ----------
-  const svg = $('#thread'), light = $('#t-light'), dark = $('#t-dark'), head = $('#t-head');
-  const frontSvg = $('#thread-front'), front = $('#t-front');
+  const svg = $('#thread'), strands = $('#t-pieces'), ink = $('#t-ink'), head = $('#t-head');
   const ruler = document.createElementNS(NS, 'path');
   ruler.setAttribute('visibility', 'hidden');
   svg.appendChild(ruler);
@@ -154,9 +135,9 @@
   function layout() {
     fitNames(); placeCaptions();
     // collapse the thread layers first, or their old height props the page open past the footer
-    for (const s of [svg, frontSvg]) s.setAttribute('height', 0);
+    svg.setAttribute('height', 0);
     const W = docW(), H = document.documentElement.scrollHeight;
-    for (const s of [svg, frontSvg]) { s.setAttribute('width', W); s.setAttribute('height', H); s.setAttribute('viewBox', `0 0 ${W} ${H}`); }
+    svg.setAttribute('width', W); svg.setAttribute('height', H); svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
     anchors = $$('[data-thread]').filter((el) => el.getClientRects().length && !el.closest('dialog'));
     swing = 1;
     const shapes = anchors.map(shape);
@@ -169,36 +150,40 @@
 
 
     darkBands = $$('.dark').map((s) => { const r = s.getBoundingClientRect(); return [r.top + scrollY, r.bottom + scrollY]; }).sort((a, b) => a[0] - b[0]);
-    const rect = (x, y, w, h) => `<rect x="${f(x)}" y="${f(y)}" width="${f(Math.max(0, w))}" height="${f(Math.max(0, h))}"/>`;
-    $('#darkclip').innerHTML = darkBands.map(([a, b]) => rect(0, a, W, b - a)).join('');
-    let y = 0, gaps = '';
-    for (const [a, b] of darkBands) { gaps += rect(0, y, W, a - y); y = b; }
-    $('#lightclip').innerHTML = gaps + rect(0, y, W, H - y);
-    // In the hero the thread is stitched through the words: in front of some, behind others.
-    $('#frontclip').innerHTML = $$('[data-front]').map((el) => { const b = box(el), half = b.w / 2; return el.dataset.front === 'r' ? rect(b.l + half, b.t, half, b.h) : rect(b.l, b.t, half, b.h); }).join('');
+    // One ink for the whole thread: deep gold on cream, light gold on the teal bands, changing exactly at each
+    // band's edge. (Clip masks did the same job, but Safari redrew them for the whole page on every frame.)
+    const stop = (at, c) => `<stop offset="${(at / H).toFixed(5)}" stop-color="${c}"/>`, onCream = '#d9a520', onTeal = '#ffd166';
+    ink.setAttribute('y2', H);
+    ink.innerHTML = stop(0, onCream) + darkBands.map(([a, b]) => stop(a, onCream) + stop(a, onTeal) + stop(b, onTeal) + stop(b, onCream)).join('') + stop(H, onCream);
     contactTop = box($('#contact')).t;
     assemble();
   }
 
   // Join the pieces, and work out how far down the page each length is reached. Depth only ever grows;
   // the drawings get a little scroll of their own so they are drawn rather than appearing at once.
+  // Each piece is its own short path, so drawing the line only ever repaints the piece being drawn.
   function assemble() {
     if (!pieces.length) return;
-    let d = `M ${f(pieces[0].from.x)} ${f(pieces[0].from.y)}`, L = 0, D = pieces[0].from.y;
+    let L = 0, D = pieces[0].from.y;
     keys = [[0, D]]; marks = [];
+    strands.textContent = '';
     for (const p of pieces) {
       p.start = L;
       if (p.anchor !== undefined) {
         anchors[p.anchor]._len = L;
         for (const [el, at] of (p.shape.marks || [])) if (el) { el._len = L + p.len * at; marks.push(el); }
       }
-      d += p.d; L += p.len;
+      if (p.len) {
+        const e = document.createElementNS(NS, 'path');
+        e.setAttribute('d', `M ${f(p.from.x)} ${f(p.from.y)}${p.d}`);
+        e.style.strokeDasharray = `${p.len} ${p.len}`; e.style.strokeDashoffset = p.len; e.style.visibility = 'hidden';
+        strands.appendChild(e); p.el = e; p.u = 0;
+      }
+      L += p.len;
       D = Math.max(p.end.y, D + (p.room ? p.len * p.room : 1));
       keys.push([L, D]);
     }
-    for (const p of [light, dark, front]) p.setAttribute('d', d);
-    total = light.getTotalLength();
-    for (const p of [light, dark, front]) p.style.strokeDasharray = `${total} ${total}`;
+    total = L;
     kick();
   }
 
@@ -212,7 +197,7 @@
   }
 
   // The drawn length eases toward where the scroll says it should be, so the line glides instead of jumping.
-  // Once the last section is on screen the thread is drawn all the way to its loose end, ready to pull.
+  // Once the last section is on screen the thread is drawn all the way to the booking button.
   const state = { started: false, floor: 0, shown: 0 };
   const target = () => {
     if (reduce) return total;
@@ -237,7 +222,6 @@
     if (el.classList.contains('lit') === on) return;
     el.classList.toggle('lit', on);
     if (on && el._onLit) { el._onLit(); el._onLit = null; }
-    if (on && el.dataset.log && !logged.has(el)) { logged.add(el); logEntry(el.dataset.log); }
     if (el.dataset.also) $$(el.dataset.also).forEach((x) => x.classList.toggle('lit', on));
     if (on && el.dataset.count && !counted.has(el) && hasGsap && !reduce) {
       counted.add(el);
@@ -246,12 +230,19 @@
     }
   }
   function render(L) {
-    for (const p of [light, dark, front]) p.style.strokeDashoffset = total - L;
+    // only the pieces whose drawn length changed are touched
+    let at = null;
+    for (const p of pieces) {
+      if (!p.el) continue;
+      const u = clamp(L - p.start, 0, p.len);
+      if (u !== p.u) { p.u = u; p.el.style.strokeDashoffset = p.len - u; p.el.style.visibility = u > 0 ? 'visible' : 'hidden'; }
+      if (u > 0 && u < p.len) at = p;
+    }
     for (const el of anchors) setLit(el, el._len <= L + 1);
     for (const el of marks) setLit(el, el._len <= L + 1);
     if (bar) bar.style.transform = `scaleX(${total ? (L / total).toFixed(4) : 0})`;
-    if (L > 2 && L < total - 2) {
-      const p = light.getPointAtLength(L);
+    if (at && L < total - 2) {
+      const p = at.el.getPointAtLength(at.u);
       head.setAttribute('cx', f(p.x)); head.setAttribute('cy', f(p.y));
       head.classList.add('on');
       head.classList.toggle('on-dark', darkBands.some(([a, b]) => p.y >= a && p.y <= b));
