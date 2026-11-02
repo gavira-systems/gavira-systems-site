@@ -288,22 +288,30 @@
     gsap.to(s, { v: 1, delay: 0.5, duration: 1.8, ease: 'power2.inOut', onUpdate: () => { state.floor = floor() * s.v; kick(); } });
   }
   function playIntro() {
-    const root = document.documentElement, done = () => { opening.remove(); root.classList.remove('opening-on'); startThread(); };
+    const root = document.documentElement, done = () => { opening.remove(); root.classList.remove('opening-on'); release(); startThread(); };
+    // While the opening plays the page holds still; a swipe, a wheel or a key plays the rest of it quickly instead
+    // of scrolling the page out from under it.
+    let tl = null;
+    const hold = (e) => { if (e.cancelable) e.preventDefault(); if (tl) tl.timeScale(5); };
+    const keys = (e) => { if (['ArrowDown', 'PageDown', ' ', 'End'].includes(e.key)) hold(e); };
+    const release = () => { removeEventListener('wheel', hold); removeEventListener('touchmove', hold); removeEventListener('keydown', keys); };
     if (reduce || !hasGsap || location.hash || scrollY > 40) return done();
     root.classList.add('opening-on');
+    addEventListener('wheel', hold, { passive: false }); addEventListener('touchmove', hold, { passive: false }); addEventListener('keydown', keys);
     const logo = $('.o-logo', opening), sys = $('.o-sys', opening), me = $('.o-me', opening);
     sys.innerHTML = [...sys.textContent].map((c) => `<i>${c === ' ' ? '&nbsp;' : c}</i>`).join('');
     // fly an opening piece onto the element it becomes, then hand over to that element
     // (sized by `by`: the logo by its own width, the chip by its photo)
     const flyTo = (el, to, by = (x) => x) => { const a = el.getBoundingClientRect(), b = to.getBoundingClientRect(), k = by(to).getBoundingClientRect().width / by(el).getBoundingClientRect().width; return { x: b.left - a.left, y: b.top - a.top, scale: k, transformOrigin: '0 0', duration: 0.9, ease: 'power3.inOut' }; };
-    gsap.timeline({ delay: 0.25 })
+    tl = gsap.timeline({ delay: 0.25 })
       .fromTo(logo, { clipPath: 'inset(0 100% 0 0)', filter: 'brightness(0) invert(1) blur(10px)', y: 10 }, { clipPath: 'inset(0 0% 0 0)', filter: 'brightness(0) invert(1) blur(0px)', y: 0, duration: 1.1, ease: 'power3.inOut' })
       .from($$('i', sys), { y: 18, opacity: 0, duration: 0.5, stagger: 0.035, ease: 'power3.out' }, '-=0.35')
       .from($('img', me), { scale: 0.4, opacity: 0, duration: 0.55, ease: 'power3.out' }, '+=0.1')
       .from($('span', me), { x: -14, opacity: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3')
       .add(() => {
-        gsap.to(logo, { ...flyTo(logo, $('.top .brand img')), onComplete: () => root.classList.remove('opening-on') });
-        gsap.to(me, flyTo(me, $('.hero-chip'), (x) => $('img', x)));
+        const fast = tl.timeScale() > 1 ? 0.3 : 0.9;
+        gsap.to(logo, { ...flyTo(logo, $('.top .brand img')), duration: fast, onComplete: () => root.classList.remove('opening-on') });
+        gsap.to(me, { ...flyTo(me, $('.hero-chip'), (x) => $('img', x)), duration: fast });
         gsap.to(sys, { opacity: 0, y: -10, duration: 0.4, ease: 'power2.in' });
         setTimeout(() => hero.classList.add('ready'), 450);
       }, '+=0.9')
